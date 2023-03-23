@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Conversation" representedClassName="Conversation" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="excluded_tokens" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expand_folder" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_folder" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" defaultValueString="Send your first message!"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="tokens" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="unread" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="update" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="userOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="belongs_to_folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="folder_has_conversations" inverseEntity="Conversation"/>
+        <relationship name="folder_has_conversations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Conversation" inverseName="belongs_to_folder" inverseEntity="Conversation"/>
+        <relationship name="has_messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="belongs_to_convo" inverseEntity="Message"/>
+        <relationship name="has_settings" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConversationSettingsEntity" inverseName="of_convo" inverseEntity="ConversationSettingsEntity"/>
+        <relationship name="last_message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="last_of_convo" inverseEntity="Message"/>
+    </entity>
+    <entity name="ConversationSettingsEntity" representedClassName="ConversationSettingsEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="frequency_penalty" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="manage_max" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="max_tokens" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="model" attributeType="String" defaultValueString="gpt-3.5-turbo"/>
+        <attribute name="override_global" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="presence_penalty" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="prompt" optional="YES" attributeType="String"/>
+        <attribute name="rendering" attributeType="String" defaultValueString="markdown"/>
+        <attribute name="stream" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="temperature" attributeType="Float" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="top_p" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="active_functions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Function" inverseName="related_conversations" inverseEntity="Function"/>
+        <relationship name="of_convo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="has_settings" inverseEntity="Conversation"/>
+    </entity>
+    <entity name="Function" representedClassName="Function" syncable="YES" codeGenerationType="class">
+        <attribute name="authfamily" attributeType="String" defaultValueString="none"/>
+        <attribute name="customisable" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nickname" optional="YES" attributeType="String"/>
+        <attribute name="owm_api" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="related_conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ConversationSettingsEntity" inverseName="active_functions" inverseEntity="ConversationSettingsEntity"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="collapsed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="content" attributeType="String" defaultValueString=""/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="function_arguments" optional="YES" attributeType="String"/>
+        <attribute name="function_displaytext" attributeType="String" defaultValueString=""/>
+        <attribute name="function_name" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="include_in_requests" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="is_error" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="is_finished" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="is_function" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="is_response" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="belongs_to_convo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="has_messages" inverseEntity="Conversation"/>
+        <relationship name="last_of_convo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="last_message" inverseEntity="Conversation"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Message"/>
+        </fetchedProperty>
+    </entity>
+    <entity name="Model" representedClassName="Model" syncable="YES" codeGenerationType="class">
+        <attribute name="anthropic_api_key" attributeType="String" defaultValueString=""/>
+        <attribute name="anthropic_enabled_models" attributeType="String" defaultValueString="claude-2;claude-instant-1-100k;claude-instant-1;"/>
+        <attribute name="anthropic_prefix" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="azure_api_key" attributeType="String" defaultValueString=""/>
+        <attribute name="azure_associated_chatgpt_model" attributeType="String" defaultValueString="gpt-3.5-turbo"/>
+        <attribute name="azure_company_endpoint" attributeType="String" defaultValueString=""/>
+        <attribute name="azure_deployment_name" attributeType="String" defaultValueString=""/>
+        <attribute name="azure_model_name" attributeType="String" defaultValueString="azure-new"/>
+        <attribute name="date_added" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="localai_available_models" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="localai_enabled_models" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="localai_endpoint" optional="YES" attributeType="String" defaultValueString="http://localhost:8080/"/>
+        <attribute name="localai_prefix" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString="custom-model"/>
+        <attribute name="openai_api_key" attributeType="String" defaultValueString=""/>
+        <attribute name="openai_enabled_models" attributeType="String" defaultValueString="gpt-3.5-turbo;"/>
+        <attribute name="openai_prefix" attributeType="String" defaultValueString="prefix"/>
+        <attribute name="type" attributeType="String" defaultValueString=""/>
+    </entity>
+    <entity name="PromptEntity" representedClassName="PromptEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="emoji" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="prompt" optional="YES" attributeType="String"/>
+        <attribute name="system" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TokenUsage" representedClassName="TokenUsage" syncable="YES" codeGenerationType="class">
+        <attribute name="cost" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="count" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="day" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="model" optional="YES" attributeType="String"/>
+        <attribute name="sent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+    </entity>
+</model>
