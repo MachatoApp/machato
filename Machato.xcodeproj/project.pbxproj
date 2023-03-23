@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */; };
+		18B5CD1E29CD1B9B003D8353 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1D29CD1B9B003D8353 /* ContentView.swift */; };
+		18B5CD2029CD1B9C003D8353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */; };
+		18B5CD2329CD1B9C003D8353 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B5CD2229CD1B9C003D8353 /* Preview Assets.xcassets */; };
+		18B5CD2E29CD1B9C003D8353 /* MachatoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD2D29CD1B9C003D8353 /* MachatoTests.swift */; };
+		18B5CD3829CD1B9C003D8353 /* MachatoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD3729CD1B9C003D8353 /* MachatoUITests.swift */; };
+		18B5CD3A29CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD3929CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18B5CD2A29CD1B9C003D8353 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18B5CD1029CD1B9A003D8353 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18B5CD1729CD1B9B003D8353;
+			remoteInfo = Machato;
+		};
+		18B5CD3429CD1B9C003D8353 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18B5CD1029CD1B9A003D8353 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18B5CD1729CD1B9B003D8353;
+			remoteInfo = Machato;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18B5CD1829CD1B9B003D8353 /* Machato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Machato.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoApp.swift; sourceTree = "<group>"; };
+		18B5CD1D29CD1B9B003D8353 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18B5CD2229CD1B9C003D8353 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		18B5CD2429CD1B9C003D8353 /* Machato.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Machato.entitlements; sourceTree = "<group>"; };
+		18B5CD2929CD1B9C003D8353 /* MachatoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MachatoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B5CD2D29CD1B9C003D8353 /* MachatoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoTests.swift; sourceTree = "<group>"; };
+		18B5CD3329CD1B9C003D8353 /* MachatoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MachatoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B5CD3729CD1B9C003D8353 /* MachatoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoUITests.swift; sourceTree = "<group>"; };
+		18B5CD3929CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18B5CD1529CD1B9B003D8353 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B5CD2629CD1B9C003D8353 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B5CD3029CD1B9C003D8353 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18B5CD0F29CD1B9A003D8353 = {
+			isa = PBXGroup;
+			children = (
+				18B5CD1A29CD1B9B003D8353 /* Machato */,
+				18B5CD2C29CD1B9C003D8353 /* MachatoTests */,
+				18B5CD3629CD1B9C003D8353 /* MachatoUITests */,
+				18B5CD1929CD1B9B003D8353 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18B5CD1929CD1B9B003D8353 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD1829CD1B9B003D8353 /* Machato.app */,
+				18B5CD2929CD1B9C003D8353 /* MachatoTests.xctest */,
+				18B5CD3329CD1B9C003D8353 /* MachatoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18B5CD1A29CD1B9B003D8353 /* Machato */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */,
+				18B5CD1D29CD1B9B003D8353 /* ContentView.swift */,
+				18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */,
+				18B5CD2429CD1B9C003D8353 /* Machato.entitlements */,
+				18B5CD2129CD1B9C003D8353 /* Preview Content */,
+			);
+			path = Machato;
+			sourceTree = "<group>";
+		};
+		18B5CD2129CD1B9C003D8353 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD2229CD1B9C003D8353 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		18B5CD2C29CD1B9C003D8353 /* MachatoTests */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD2D29CD1B9C003D8353 /* MachatoTests.swift */,
+			);
+			path = MachatoTests;
+			sourceTree = "<group>";
+		};
+		18B5CD3629CD1B9C003D8353 /* MachatoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD3729CD1B9C003D8353 /* MachatoUITests.swift */,
+				18B5CD3929CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift */,
+			);
+			path = MachatoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18B5CD1729CD1B9B003D8353 /* Machato */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B5CD3D29CD1B9C003D8353 /* Build configuration list for PBXNativeTarget "Machato" */;
+			buildPhases = (
+				18B5CD1429CD1B9B003D8353 /* Sources */,
+				18B5CD1529CD1B9B003D8353 /* Frameworks */,
+				18B5CD1629CD1B9B003D8353 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Machato;
+			productName = Machato;
+			productReference = 18B5CD1829CD1B9B003D8353 /* Machato.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18B5CD2829CD1B9C003D8353 /* MachatoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B5CD4029CD1B9C003D8353 /* Build configuration list for PBXNativeTarget "MachatoTests" */;
+			buildPhases = (
+				18B5CD2529CD1B9C003D8353 /* Sources */,
+				18B5CD2629CD1B9C003D8353 /* Frameworks */,
+				18B5CD2729CD1B9C003D8353 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18B5CD2B29CD1B9C003D8353 /* PBXTargetDependency */,
+			);
+			name = MachatoTests;
+			productName = MachatoTests;
+			productReference = 18B5CD2929CD1B9C003D8353 /* MachatoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		18B5CD3229CD1B9C003D8353 /* MachatoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B5CD4329CD1B9C003D8353 /* Build configuration list for PBXNativeTarget "MachatoUITests" */;
+			buildPhases = (
+				18B5CD2F29CD1B9C003D8353 /* Sources */,
+				18B5CD3029CD1B9C003D8353 /* Frameworks */,
+				18B5CD3129CD1B9C003D8353 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18B5CD3529CD1B9C003D8353 /* PBXTargetDependency */,
+			);
+			name = MachatoUITests;
+			productName = MachatoUITests;
+			productReference = 18B5CD3329CD1B9C003D8353 /* MachatoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18B5CD1029CD1B9A003D8353 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					18B5CD1729CD1B9B003D8353 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					18B5CD2829CD1B9C003D8353 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 18B5CD1729CD1B9B003D8353;
+					};
+					18B5CD3229CD1B9C003D8353 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 18B5CD1729CD1B9B003D8353;
+					};
+				};
+			};
+			buildConfigurationList = 18B5CD1329CD1B9A003D8353 /* Build configuration list for PBXProject "Machato" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18B5CD0F29CD1B9A003D8353;
+			productRefGroup = 18B5CD1929CD1B9B003D8353 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18B5CD1729CD1B9B003D8353 /* Machato */,
+				18B5CD2829CD1B9C003D8353 /* MachatoTests */,
+				18B5CD3229CD1B9C003D8353 /* MachatoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18B5CD1629CD1B9B003D8353 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B5CD2329CD1B9C003D8353 /* Preview Assets.xcassets in Resources */,
+				18B5CD2029CD1B9C003D8353 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B5CD2729CD1B9C003D8353 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B5CD3129CD1B9C003D8353 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18B5CD1429CD1B9B003D8353 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B5CD1E29CD1B9B003D8353 /* ContentView.swift in Sources */,
+				18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B5CD2529CD1B9C003D8353 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B5CD2E29CD1B9C003D8353 /* MachatoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B5CD2F29CD1B9C003D8353 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B5CD3A29CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift in Sources */,
+				18B5CD3829CD1B9C003D8353 /* MachatoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18B5CD2B29CD1B9C003D8353 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18B5CD1729CD1B9B003D8353 /* Machato */;
+			targetProxy = 18B5CD2A29CD1B9C003D8353 /* PBXContainerItemProxy */;
+		};
+		18B5CD3529CD1B9C003D8353 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18B5CD1729CD1B9B003D8353 /* Machato */;
+			targetProxy = 18B5CD3429CD1B9C003D8353 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		18B5CD3B29CD1B9C003D8353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		18B5CD3C29CD1B9C003D8353 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		18B5CD3E29CD1B9C003D8353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Machato/Machato.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		18B5CD3F29CD1B9C003D8353 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Machato/Machato.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		18B5CD4129CD1B9C003D8353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = machato.MachatoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Machato.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Machato";
+			};
+			name = Debug;
+		};
+		18B5CD4229CD1B9C003D8353 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = machato.MachatoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Machato.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Machato";
+			};
+			name = Release;
+		};
+		18B5CD4429CD1B9C003D8353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = machato.MachatoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Machato;
+			};
+			name = Debug;
+		};
+		18B5CD4529CD1B9C003D8353 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = machato.MachatoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Machato;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18B5CD1329CD1B9A003D8353 /* Build configuration list for PBXProject "Machato" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B5CD3B29CD1B9C003D8353 /* Debug */,
+				18B5CD3C29CD1B9C003D8353 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18B5CD3D29CD1B9C003D8353 /* Build configuration list for PBXNativeTarget "Machato" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B5CD3E29CD1B9C003D8353 /* Debug */,
+				18B5CD3F29CD1B9C003D8353 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18B5CD4029CD1B9C003D8353 /* Build configuration list for PBXNativeTarget "MachatoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B5CD4129CD1B9C003D8353 /* Debug */,
+				18B5CD4229CD1B9C003D8353 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18B5CD4329CD1B9C003D8353 /* Build configuration list for PBXNativeTarget "MachatoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B5CD4429CD1B9C003D8353 /* Debug */,
+				18B5CD4529CD1B9C003D8353 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18B5CD1029CD1B9A003D8353 /* Project object */;
+}
