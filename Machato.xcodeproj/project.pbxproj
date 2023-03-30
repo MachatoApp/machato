@@ -7,13 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */; };
-		18B5CD1E29CD1B9B003D8353 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1D29CD1B9B003D8353 /* ContentView.swift */; };
+		18B5CD1E29CD1B9B003D8353 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1D29CD1B9B003D8353 /* MainView.swift */; };
 		18B5CD2029CD1B9C003D8353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */; };
 		18B5CD2329CD1B9C003D8353 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B5CD2229CD1B9C003D8353 /* Preview Assets.xcassets */; };
 		18B5CD2E29CD1B9C003D8353 /* MachatoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD2D29CD1B9C003D8353 /* MachatoTests.swift */; };
 		18B5CD3829CD1B9C003D8353 /* MachatoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD3729CD1B9C003D8353 /* MachatoUITests.swift */; };
 		18B5CD3A29CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD3929CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift */; };
+		18B5CD4929CF2714003D8353 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD4829CF2714003D8353 /* ChatView.swift */; };
+		18B5CD4C29CF2899003D8353 /* ChatElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD4B29CF2899003D8353 /* ChatElement.swift */; };
+		18B5CD4F29CFC74D003D8353 /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD4E29CFC74D003D8353 /* ChatRequest.swift */; };
+		18B5CD5329D05EC7003D8353 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD5229D05EC7003D8353 /* ChatResponse.swift */; };
+		18B5CD5629D085E0003D8353 /* ChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */; };
+		18B5CD5829D0ADE6003D8353 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD5729D0ADE6003D8353 /* Models.swift */; };
+		18B5CD5B29D0E7BA003D8353 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18B5CD5A29D0E7BA003D8353 /* MarkdownUI */; };
+		18B8581829D25CE600A688DA /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 18B8581729D25CE600A688DA /* Highlightr */; };
+		18B8581A29D2670800A688DA /* Memoize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581929D2670800A688DA /* Memoize.swift */; };
+		18B8581C29D3593F00A688DA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581B29D3593F00A688DA /* SettingsView.swift */; };
+		18B8581F29D3983800A688DA /* TypesetFunctionalities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581E29D3983800A688DA /* TypesetFunctionalities.swift */; };
+		18B8582329D3A34C00A688DA /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8582229D3A34C00A688DA /* PreferencesManager.swift */; };
+		18B8582529D49D1100A688DA /* ConversationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8582429D49D1100A688DA /* ConversationSettings.swift */; };
+		18B8582829D4C12000A688DA /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18B8582729D4C12000A688DA /* LaTeXSwiftUI */; };
+		18F8504E29D1E796005CCD4A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8504D29D1E796005CCD4A /* Colors.swift */; };
+		18F8505B29D216B6005CCD4A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8505A29D216B6005CCD4A /* Event.swift */; };
+		18F8505D29D216BD005CCD4A /* EventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8505C29D216BD005CCD4A /* EventSource.swift */; };
+		18F8505F29D216C1005CCD4A /* EventStreamParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8505E29D216C1005CCD4A /* EventStreamParser.swift */; };
+		18F8506429D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8506329D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1878C82F29D5BEC1000159EA /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		18B5CD1829CD1B9B003D8353 /* Machato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Machato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoApp.swift; sourceTree = "<group>"; };
-		18B5CD1D29CD1B9B003D8353 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		18B5CD1D29CD1B9B003D8353 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18B5CD2229CD1B9C003D8353 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18B5CD2429CD1B9C003D8353 /* Machato.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Machato.entitlements; sourceTree = "<group>"; };
@@ -45,6 +66,22 @@
 		18B5CD3329CD1B9C003D8353 /* MachatoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MachatoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B5CD3729CD1B9C003D8353 /* MachatoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoUITests.swift; sourceTree = "<group>"; };
 		18B5CD3929CD1B9C003D8353 /* MachatoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		18B5CD4829CF2714003D8353 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		18B5CD4B29CF2899003D8353 /* ChatElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatElement.swift; sourceTree = "<group>"; };
+		18B5CD4E29CFC74D003D8353 /* ChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
+		18B5CD5229D05EC7003D8353 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
+		18B5CD5529D085E0003D8353 /* ChatModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatModel.xcdatamodel; sourceTree = "<group>"; };
+		18B5CD5729D0ADE6003D8353 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		18B8581929D2670800A688DA /* Memoize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoize.swift; sourceTree = "<group>"; };
+		18B8581B29D3593F00A688DA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		18B8581E29D3983800A688DA /* TypesetFunctionalities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesetFunctionalities.swift; sourceTree = "<group>"; };
+		18B8582229D3A34C00A688DA /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		18B8582429D49D1100A688DA /* ConversationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSettings.swift; sourceTree = "<group>"; };
+		18F8504D29D1E796005CCD4A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		18F8505A29D216B6005CCD4A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		18F8505C29D216BD005CCD4A /* EventSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSource.swift; sourceTree = "<group>"; };
+		18F8505E29D216C1005CCD4A /* EventStreamParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStreamParser.swift; sourceTree = "<group>"; };
+		18F8506329D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightrSyntaxHighlighter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +89,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B8581829D25CE600A688DA /* Highlightr in Frameworks */,
+				18B5CD5B29D0E7BA003D8353 /* MarkdownUI in Frameworks */,
+				18B8582829D4C12000A688DA /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,11 +135,16 @@
 		18B5CD1A29CD1B9B003D8353 /* Machato */ = {
 			isa = PBXGroup;
 			children = (
+				18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */,
+				18B8581D29D3981E00A688DA /* Preferences */,
+				18B5CD4D29CFBFE5003D8353 /* OpenAI */,
+				18B5CD4A29CF286C003D8353 /* UI */,
 				18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */,
-				18B5CD1D29CD1B9B003D8353 /* ContentView.swift */,
+				18F8505929D216A3005CCD4A /* EventSource */,
 				18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */,
 				18B5CD2429CD1B9C003D8353 /* Machato.entitlements */,
 				18B5CD2129CD1B9C003D8353 /* Preview Content */,
+				18B8581929D2670800A688DA /* Memoize.swift */,
 			);
 			path = Machato;
 			sourceTree = "<group>";
@@ -129,6 +174,50 @@
 			path = MachatoUITests;
 			sourceTree = "<group>";
 		};
+		18B5CD4A29CF286C003D8353 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD1D29CD1B9B003D8353 /* MainView.swift */,
+				18B5CD4829CF2714003D8353 /* ChatView.swift */,
+				18B5CD4B29CF2899003D8353 /* ChatElement.swift */,
+				18F8504D29D1E796005CCD4A /* Colors.swift */,
+				18F8506329D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift */,
+				18B8581B29D3593F00A688DA /* SettingsView.swift */,
+				1878C82F29D5BEC1000159EA /* Chip.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		18B5CD4D29CFBFE5003D8353 /* OpenAI */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD4E29CFC74D003D8353 /* ChatRequest.swift */,
+				18B5CD5229D05EC7003D8353 /* ChatResponse.swift */,
+			);
+			path = OpenAI;
+			sourceTree = "<group>";
+		};
+		18B8581D29D3981E00A688DA /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD5729D0ADE6003D8353 /* Models.swift */,
+				18B8581E29D3983800A688DA /* TypesetFunctionalities.swift */,
+				18B8582229D3A34C00A688DA /* PreferencesManager.swift */,
+				18B8582429D49D1100A688DA /* ConversationSettings.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		18F8505929D216A3005CCD4A /* EventSource */ = {
+			isa = PBXGroup;
+			children = (
+				18F8505A29D216B6005CCD4A /* Event.swift */,
+				18F8505C29D216BD005CCD4A /* EventSource.swift */,
+				18F8505E29D216C1005CCD4A /* EventStreamParser.swift */,
+			);
+			path = EventSource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +234,11 @@
 			dependencies = (
 			);
 			name = Machato;
+			packageProductDependencies = (
+				18B5CD5A29D0E7BA003D8353 /* MarkdownUI */,
+				18B8581729D25CE600A688DA /* Highlightr */,
+				18B8582729D4C12000A688DA /* LaTeXSwiftUI */,
+			);
 			productName = Machato;
 			productReference = 18B5CD1829CD1B9B003D8353 /* Machato.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +311,11 @@
 				Base,
 			);
 			mainGroup = 18B5CD0F29CD1B9A003D8353;
+			packageReferences = (
+				18B5CD5929D0E7BA003D8353 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */,
+				18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
+			);
 			productRefGroup = 18B5CD1929CD1B9B003D8353 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +358,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B5CD1E29CD1B9B003D8353 /* ContentView.swift in Sources */,
+				18B8581C29D3593F00A688DA /* SettingsView.swift in Sources */,
+				18B8582329D3A34C00A688DA /* PreferencesManager.swift in Sources */,
+				1878C83029D5BEC1000159EA /* Chip.swift in Sources */,
+				18F8506429D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift in Sources */,
+				18B5CD5329D05EC7003D8353 /* ChatResponse.swift in Sources */,
+				18F8504E29D1E796005CCD4A /* Colors.swift in Sources */,
+				18B5CD4929CF2714003D8353 /* ChatView.swift in Sources */,
+				18B5CD1E29CD1B9B003D8353 /* MainView.swift in Sources */,
+				18B8581F29D3983800A688DA /* TypesetFunctionalities.swift in Sources */,
+				18F8505B29D216B6005CCD4A /* Event.swift in Sources */,
+				18B8581A29D2670800A688DA /* Memoize.swift in Sources */,
 				18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */,
+				18B5CD4C29CF2899003D8353 /* ChatElement.swift in Sources */,
+				18B5CD5829D0ADE6003D8353 /* Models.swift in Sources */,
+				18B5CD4F29CFC74D003D8353 /* ChatRequest.swift in Sources */,
+				18F8505F29D216C1005CCD4A /* EventStreamParser.swift in Sources */,
+				18F8505D29D216BD005CCD4A /* EventSource.swift in Sources */,
+				18B5CD5629D085E0003D8353 /* ChatModel.xcdatamodeld in Sources */,
+				18B8582529D49D1100A688DA /* ConversationSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Machato/Machato.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -440,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Machato/Machato.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -568,6 +686,65 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18B5CD5929D0E7BA003D8353 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18B5CD5A29D0E7BA003D8353 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18B5CD5929D0E7BA003D8353 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		18B8581729D25CE600A688DA /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
+		};
+		18B8582729D4C12000A688DA /* LaTeXSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
+			productName = LaTeXSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18B5CD5529D085E0003D8353 /* ChatModel.xcdatamodel */,
+			);
+			currentVersion = 18B5CD5529D085E0003D8353 /* ChatModel.xcdatamodel */;
+			name = ChatModel.xcdatamodeld;
+			path = Machato/ChatModel.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18B5CD1029CD1B9A003D8353 /* Project object */;
 }

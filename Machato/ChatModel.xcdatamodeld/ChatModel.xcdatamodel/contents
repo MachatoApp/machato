@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Conversation" representedClassName="Conversation" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="summary" optional="YES" attributeType="String" defaultValueString="Send your first message!"/>
+        <attribute name="title" attributeType="String" defaultValueString="Untitled conversation"/>
+        <attribute name="update" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <relationship name="has_messages" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Message" inverseName="belongs_to_convo" inverseEntity="Message"/>
+        <relationship name="has_settings" maxCount="1" deletionRule="Cascade" destinationEntity="ConversationSettingsEntity" inverseName="of_convo" inverseEntity="ConversationSettingsEntity"/>
+        <relationship name="last_message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="last_of_convo" inverseEntity="Message"/>
+    </entity>
+    <entity name="ConversationSettingsEntity" representedClassName="ConversationSettingsEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="model" attributeType="String"/>
+        <attribute name="override_global" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="prompt" attributeType="String"/>
+        <attribute name="rendering" attributeType="String" defaultValueString="markdown"/>
+        <attribute name="stream" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="temperature" attributeType="Float" defaultValueString="1" usesScalarValueType="YES"/>
+        <relationship name="of_convo" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="has_settings" inverseEntity="Conversation"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="content" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_finished" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="is_response" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="belongs_to_convo" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="has_messages" inverseEntity="Conversation"/>
+        <relationship name="last_of_convo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="last_message" inverseEntity="Conversation"/>
+    </entity>
+</model>
