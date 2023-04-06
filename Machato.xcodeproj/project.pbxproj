@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186812F029DD944500F98411 /* GumroadLicenseCheck.swift */; };
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
+		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
+		1878C83829D615EC000159EA /* ChatResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83729D615EC000159EA /* ChatResponseError.swift */; };
 		18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */; };
 		18B5CD1E29CD1B9B003D8353 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1D29CD1B9B003D8353 /* MainView.swift */; };
 		18B5CD2029CD1B9C003D8353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */; };
@@ -54,7 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		186812F029DD944500F98411 /* GumroadLicenseCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadLicenseCheck.swift; sourceTree = "<group>"; };
 		1878C82F29D5BEC1000159EA /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
+		1878C83329D5EFDC000159EA /* HomePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePane.swift; sourceTree = "<group>"; };
+		1878C83729D615EC000159EA /* ChatResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponseError.swift; sourceTree = "<group>"; };
 		18B5CD1829CD1B9B003D8353 /* Machato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Machato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoApp.swift; sourceTree = "<group>"; };
 		18B5CD1D29CD1B9B003D8353 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -112,6 +118,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		186812EE29DD942D00F98411 /* OpenAI */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD4E29CFC74D003D8353 /* ChatRequest.swift */,
+				18B5CD5229D05EC7003D8353 /* ChatResponse.swift */,
+				1878C83729D615EC000159EA /* ChatResponseError.swift */,
+			);
+			path = OpenAI;
+			sourceTree = "<group>";
+		};
+		186812EF29DD943800F98411 /* Gumroad */ = {
+			isa = PBXGroup;
+			children = (
+				186812F029DD944500F98411 /* GumroadLicenseCheck.swift */,
+			);
+			path = Gumroad;
+			sourceTree = "<group>";
+		};
+		1878C83129D5EF5D000159EA /* ChatPane */ = {
+			isa = PBXGroup;
+			children = (
+				18B5CD4829CF2714003D8353 /* ChatView.swift */,
+				18B5CD4B29CF2899003D8353 /* ChatElement.swift */,
+			);
+			path = ChatPane;
+			sourceTree = "<group>";
+		};
+		1878C83229D5EF72000159EA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				18B8581B29D3593F00A688DA /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		18B5CD0F29CD1B9A003D8353 = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +178,7 @@
 			children = (
 				18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */,
 				18B8581D29D3981E00A688DA /* Preferences */,
-				18B5CD4D29CFBFE5003D8353 /* OpenAI */,
+				18B5CD4D29CFBFE5003D8353 /* HTTP */,
 				18B5CD4A29CF286C003D8353 /* UI */,
 				18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */,
 				18F8505929D216A3005CCD4A /* EventSource */,
@@ -177,24 +218,24 @@
 		18B5CD4A29CF286C003D8353 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1878C83229D5EF72000159EA /* Settings */,
+				1878C83129D5EF5D000159EA /* ChatPane */,
 				18B5CD1D29CD1B9B003D8353 /* MainView.swift */,
-				18B5CD4829CF2714003D8353 /* ChatView.swift */,
-				18B5CD4B29CF2899003D8353 /* ChatElement.swift */,
+				1878C82F29D5BEC1000159EA /* Chip.swift */,
 				18F8504D29D1E796005CCD4A /* Colors.swift */,
 				18F8506329D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift */,
-				18B8581B29D3593F00A688DA /* SettingsView.swift */,
-				1878C82F29D5BEC1000159EA /* Chip.swift */,
+				1878C83329D5EFDC000159EA /* HomePane.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		18B5CD4D29CFBFE5003D8353 /* OpenAI */ = {
+		18B5CD4D29CFBFE5003D8353 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				18B5CD4E29CFC74D003D8353 /* ChatRequest.swift */,
-				18B5CD5229D05EC7003D8353 /* ChatResponse.swift */,
+				186812EF29DD943800F98411 /* Gumroad */,
+				186812EE29DD942D00F98411 /* OpenAI */,
 			);
-			path = OpenAI;
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 		18B8581D29D3981E00A688DA /* Preferences */ = {
@@ -364,9 +405,11 @@
 				18F8506429D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift in Sources */,
 				18B5CD5329D05EC7003D8353 /* ChatResponse.swift in Sources */,
 				18F8504E29D1E796005CCD4A /* Colors.swift in Sources */,
+				1878C83829D615EC000159EA /* ChatResponseError.swift in Sources */,
 				18B5CD4929CF2714003D8353 /* ChatView.swift in Sources */,
 				18B5CD1E29CD1B9B003D8353 /* MainView.swift in Sources */,
 				18B8581F29D3983800A688DA /* TypesetFunctionalities.swift in Sources */,
+				186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */,
 				18F8505B29D216B6005CCD4A /* Event.swift in Sources */,
 				18B8581A29D2670800A688DA /* Memoize.swift in Sources */,
 				18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */,
@@ -376,6 +419,7 @@
 				18F8505F29D216C1005CCD4A /* EventStreamParser.swift in Sources */,
 				18F8505D29D216BD005CCD4A /* EventSource.swift in Sources */,
 				18B5CD5629D085E0003D8353 /* ChatModel.xcdatamodeld in Sources */,
+				1878C83429D5EFDC000159EA /* HomePane.swift in Sources */,
 				18B8582529D49D1100A688DA /* ConversationSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,20 +577,27 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Machato/Machato.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
+				DEVELOPMENT_TEAM = BHFDJ8TRX6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Machato;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -559,20 +610,27 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Machato/Machato.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
+				DEVELOPMENT_TEAM = BHFDJ8TRX6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Machato;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

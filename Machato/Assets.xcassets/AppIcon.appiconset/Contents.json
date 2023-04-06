@@ -1,61 +1,61 @@
 {
   "images" : [
     {
-      "filename" : "dessin-16.png",
+      "filename" : "machato-16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "dessin-32 1.png",
+      "filename" : "machato-32.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "dessin-32.png",
+      "filename" : "machato-32.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "dessin-64.png",
+      "filename" : "machato-64.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "dessin-128.png",
+      "filename" : "machato-128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "dessin-256 1.png",
+      "filename" : "machato-256.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "dessin-256.png",
+      "filename" : "machato-256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "dessin-512 1.png",
+      "filename" : "machato-512.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "dessin-512.png",
+      "filename" : "machato-512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "dessin-1024.png",
+      "filename" : "machato-1024.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

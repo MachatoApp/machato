@@ -13,6 +13,7 @@ struct SettingsView: View {
     @State private var model : OpenAIChatModel = PreferencesManager.shared.defaultModel;
     @State private var defaultTemperatureInt : Int = Int(PreferencesManager.shared.defaultTemperature * 10);
     @State private var api_key : String = PreferencesManager.shared.api_key;
+    @State private var license_key : String = PreferencesManager.shared.license_key;
     private var convo: Conversation? = nil;
     @State private var convoOverride : Bool = false;
     @Environment(\.dismiss) var dismiss
@@ -56,6 +57,12 @@ struct SettingsView: View {
                 TextField("API key", text: $api_key)
                     .onChange(of: api_key, perform: save)
             }
+            HStack {
+                Text("License Key")
+                TextField("Gumroad license key", text: $license_key)
+                    .onChange(of: license_key, perform: save)
+            }
+
         }
     }
     
@@ -110,6 +117,7 @@ struct SettingsView: View {
             PreferencesManager.shared.defaultTemperature = defaultTemperature
             PreferencesManager.shared.defaultTypeset = typeset
             PreferencesManager.shared.streamChat = stream
+            PreferencesManager.shared.license_key = license_key
         }
     }
     

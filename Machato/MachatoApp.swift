@@ -86,26 +86,54 @@ class MachatoApp: App {
         let m = newMessage("", conversation, received: true, trySave: false)
         let settings = PreferencesManager.getConversationSettings(conversation)
         if settings.stream {
-            chatAPIManager.streamedChatRequest(conversation) { (event, delta, _) in
-                conversation.update.toggle()
-                switch event {
-                case .end:
-                    m.is_finished = true
-                    try? self.persistentContainer.viewContext.save()
-                    if wasFirstMessage { self.entitleConvo(conversation) }
-                case .delta:
-                    guard let d = delta else { return }
-                    guard let ds = d.choices.first?.delta.content else { return }
-                    m.content! += ds;
+            Task {
+                await chatAPIManager.streamedChatRequest(conversation) { (event, delta, _, error, errorMessage) in
+                    conversation.update.toggle()
+                    switch event {
+                    case .end:
+                        m.is_finished = true
+                        try? self.persistentContainer.viewContext.save()
+                        if wasFirstMessage { self.entitleConvo(conversation) }
+                    case .delta:
+                        guard let d = delta else { return }
+                        guard let ds = d.choices.first?.delta.content else { return }
+                        m.content! += ds;
+                    case .error:
+                        guard let e = error else { return }
+                        m.is_error = true
+                        m.is_finished = true
+                        if m.content == nil { m.content = "" }
+                        m.content! += "\n\n"
+                        m.content = e.description
+                        if let em = errorMessage {
+                            m.content! += "\n\n"
+                            m.content! += "```\n" + em + "\n```";
+                        }
+                    }
                 }
             }
         } else {
-            chatAPIManager.sendChatRequest(conversation) { convo, response in
-                guard let firstChoice = response.choices.first else { return }
-                
-                print(firstChoice.message.content)
-                m.is_finished = true
-                m.content = firstChoice.message.content
+            Task {
+                await chatAPIManager.sendChatRequest(conversation) { convo, response, error, errorMessage in
+                    guard error == nil else {
+                        print("There was an error: \(error!.description)")
+                        m.is_error = true
+                        m.is_finished = true
+                        if m.content == nil { m.content = "" }
+                        m.content! += "\n\n"
+                        m.content! += error!.description
+                        if let em = errorMessage {
+                            print(em)
+                            m.content! += "\n\n"
+                            m.content! += "```\n" + em + "\n```";
+                        }
+                        return
+                    }
+                    guard let firstChoice = response?.choices.first else { return }
+                    print(firstChoice.message.content)
+                    m.is_finished = true
+                    m.content = firstChoice.message.content
+                }
             }
         }
     }
@@ -125,6 +153,7 @@ class MachatoApp: App {
         m.is_response = received
         m.is_finished = !received
         m.date = Date();
+        m.is_error = false;
         m.belongs_to_convo = convo;
         convo.last_message = m
         if trySave { try? persistentContainer.viewContext.save() }

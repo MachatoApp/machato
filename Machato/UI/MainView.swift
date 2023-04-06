@@ -61,7 +61,7 @@ struct MainView: View {
                                 Image(systemName: "trash")
                             } .buttonStyle(.borderless)
                         }
-                        Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content ?? "Empty")
+                        Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .opacity(0.6)
                             .lineLimit(2)
@@ -96,13 +96,13 @@ struct MainView: View {
             }
         }
         else {
-            Button() {
+            HomePane {
                 if let nc = newConvo {
                     select(nc())
                 }
-            } label: {
-                Label("Start a new conversation", systemImage: "text.bubble.fill").labelStyle(.titleAndIcon)
-            }.buttonStyle(.bordered)
+            } openSettings: {
+                openSettingsPane = true
+            }
         }
     }
     

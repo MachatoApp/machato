@@ -54,7 +54,7 @@ public protocol EventSourceProtocol {
     /// following event source rules and finally the network layer error if any. All this information is more than
     /// enought for you to take a decition if you should reconnect or not.
     /// - Parameter onOpenCallback: callback
-    func onComplete(_ onComplete: @escaping ((Int?, Bool?, NSError?) -> Void))
+    func onComplete(_ onComplete: @escaping ((Int?, Bool?, NSError?, String?) -> Void))
 
     /// This callback is called everytime an event with name "message" or no name is received.
     func onMessage(_ onMessageCallback: @escaping ((_ id: String?, _ event: String?, _ data: String?) -> Void))
@@ -83,7 +83,7 @@ open class EventSource: NSObject, EventSourceProtocol, URLSessionDataDelegate {
     private(set) public var readyState: EventSourceState
 
     private var onOpenCallback: (() -> Void)?
-    private var onComplete: ((Int?, Bool?, NSError?) -> Void)?
+    private var onComplete: ((Int?, Bool?, NSError?, String?) -> Void)?
     private var onMessageCallback: ((_ id: String?, _ event: String?, _ data: String?) -> Void)?
     private var eventListeners: [String: (_ id: String?, _ event: String?, _ data: String?) -> Void] = [:]
 
@@ -124,7 +124,7 @@ open class EventSource: NSObject, EventSourceProtocol, URLSessionDataDelegate {
         self.onOpenCallback = onOpenCallback
     }
 
-    public func onComplete(_ onComplete: @escaping ((Int?, Bool?, NSError?) -> Void)) {
+    public func onComplete(_ onComplete: @escaping ((Int?, Bool?, NSError?, String?) -> Void)) {
         self.onComplete = onComplete
     }
 
@@ -172,12 +172,12 @@ open class EventSource: NSObject, EventSourceProtocol, URLSessionDataDelegate {
                          didCompleteWithError error: Error?) {
 
         guard let responseStatusCode = (task.response as? HTTPURLResponse)?.statusCode else {
-            mainQueue.async { [weak self] in self?.onComplete?(nil, nil, error as NSError?) }
+            mainQueue.async { [weak self] in self?.onComplete?(nil, nil, error as NSError?, nil) }
             return
         }
 
         let reconnect = shouldReconnect(statusCode: responseStatusCode)
-        mainQueue.async { [weak self] in self?.onComplete?(responseStatusCode, reconnect, nil) }
+        mainQueue.async { [weak self] in self?.onComplete?(responseStatusCode, reconnect, nil, self?.eventStreamParser?.currentBuffer) }
     }
 
     open func urlSession(_ session: URLSession,
@@ -192,7 +192,7 @@ open class EventSource: NSObject, EventSourceProtocol, URLSessionDataDelegate {
     }
 }
 
-internal extension EventSource {
+extension EventSource {
 
     func sessionConfiguration(lastEventId: String?) -> URLSessionConfiguration {
 
@@ -234,6 +234,9 @@ private extension EventSource {
             }
 
             if let eventName = event.event, let eventHandler = eventListeners[eventName] {
+                #if DEBUG
+                print("Received event with name: \(eventName)")
+                #endif
                 mainQueue.async { eventHandler(event.id, event.event, event.data) }
             }
         }

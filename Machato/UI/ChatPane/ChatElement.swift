@@ -34,7 +34,24 @@ struct ChatElement: View {
         m.replace(#/\\\[\n/#) { _ in "\\[" }
         m.replace(#/\n\\\]/#) { _ in "\\]" }
         m.replace(#/\n\$\$/#) { _ in "$$" }
+        m.replace(#/\\\(|\\\)/#) { _ in "$" }
         return m
+    }
+    
+    @ViewBuilder
+    var contentView: some View {
+        switch convoSettings.typeset {
+        case .markdown:
+            Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update)
+                .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared)
+        case .plain:
+            Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
+        case .mathjax:
+            LaTeX(messageContentLatexPatched).padding(10).textSelection(.enabled).id(update)
+                .foregroundColor(AppColors.chatForegroundColor)
+                .parsingMode(.onlyEquations)
+                .errorMode(.error)
+        }
     }
     
     var body: some View {
@@ -50,18 +67,17 @@ struct ChatElement: View {
                 } else {
                     Label("Sent", systemImage: "arrowshape.right.fill").labelStyle(.iconOnly) .padding(10) .padding([.top], 1)
                 }
-                switch convoSettings.typeset {
-                case .markdown:
-                    Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update)
-                        .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared)
-                case .plain:
-                    Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
-                case .mathjax:
-                    LaTeX(messageContentLatexPatched).padding(10).textSelection(.enabled).id(update)
-                        .foregroundColor(AppColors.chatForegroundColor)
-                        .parsingMode(.onlyEquations)
-                        .imageRenderingMode(.original)
-                        .errorMode(.error)
+                if message.is_error {
+                    Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update).markdownBlockStyle(\.codeBlock) { config in
+                        config.label.markdownTextStyle {
+                            FontFamilyVariant(.monospaced)
+                            ForegroundColor(.red)
+                        }.background(.red.opacity(0.25))
+                    }.markdownTextStyle(\.text) {
+                        ForegroundColor(.red)
+                    }
+                } else {
+                    contentView
                 }
                 Spacer()
             } .onChange(of: colorScheme) { nv in

@@ -20,7 +20,7 @@ struct ChatResponse: Codable {
         var completion_tokens: Int;
         var total_tokens: Int;
     }
-
+    
     struct ResponseMessage: Codable {
         struct ResponseMessageContent: Codable {
             var role: String;
@@ -47,4 +47,14 @@ struct StreamedChatDelta : Codable {
             var content : String;
         }
     }
+}
+
+public struct APIError: Error, Codable {
+    struct Content: Codable {
+        var message: String
+        var type: String
+        var param: String?
+        var code: String?
+    }
+    var error: Content
 }

@@ -23,6 +23,7 @@
         <attribute name="content" attributeType="String"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_error" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="is_finished" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="is_response" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="belongs_to_convo" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="has_messages" inverseEntity="Conversation"/>

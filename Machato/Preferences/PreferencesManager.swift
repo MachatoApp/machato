@@ -17,12 +17,17 @@ struct PreferencesManager {
         static let current_conversation = "current_uuid"
         static let default_prompt = "default_prompt"
         static let api_key = "api_key"
+        static let license_key = "license_key"
     }
     static var shared = PreferencesManager()
     
     var api_key : String {
         get { return UserDefaults.standard.string(forKey: StoredPreferenceKey.api_key) ?? "" }
         set(v) { UserDefaults.standard.set(v, forKey: StoredPreferenceKey.api_key) }
+    }
+    var license_key : String {
+        get { return UserDefaults.standard.string(forKey: StoredPreferenceKey.license_key) ?? "" }
+        set(v) { UserDefaults.standard.set(v, forKey: StoredPreferenceKey.license_key) }
     }
     var streamChat: Bool {
         get { return UserDefaults.standard.bool(forKey: StoredPreferenceKey.stream_chat) }
