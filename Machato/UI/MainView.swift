@@ -12,13 +12,14 @@ struct MainView: View {
     public var newConvo : (() -> Conversation)?; // Call back
     public var onSend : ((Conversation, String) -> Void)?;
     public var delConv : ((Conversation) -> Void)?;
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Conversation.date, ascending: false)], animation: .default) var conversations: FetchedResults<Conversation>;
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Conversation.userOrder, ascending: true), NSSortDescriptor(keyPath: \Conversation.date, ascending: false)], animation: .default) var conversations: FetchedResults<Conversation>;
     @Environment(\.managedObjectContext) var moc;
     @State private var current : Conversation? = nil;
     public var onMessageAction : ((ChatElementAction, Message) -> Void)? = nil;
     @State private var openSettingsPane : Bool = false;
     @State private var openConvoSettingsPane : Bool = false;
     @Environment(\.openWindow) var openWindow;
+    @State private var update : Bool = false;
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -61,13 +62,15 @@ struct MainView: View {
                                 Image(systemName: "trash")
                             } .buttonStyle(.borderless)
                         }
-                        Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .opacity(0.6)
-                            .lineLimit(2)
-                            .padding([.leading], 5)
-                            .id(convo.update) // hack to force update
-                    }
+                        if PreferencesManager.shared.hide_conversation_summary == false {
+                            Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .opacity(0.6)
+                                .lineLimit(2)
+                                .padding([.leading], 5)
+                                .id(convo.update) // hack to force update
+                        }
+                    }.id(update)
                 }.padding([.top, .bottom], 5) .onChange(of: current) {nc in
                     UserDefaults.standard.set(nc?.id?.uuidString ?? "", forKey: "current_uuid")
                 }
@@ -82,6 +85,8 @@ struct MainView: View {
             .padding([.top], 5)
             .sheet(isPresented: $openSettingsPane) {
                 SettingsView()
+            } .onChange(of: openSettingsPane) { _ in
+                update.toggle()
             }
         }
     }
@@ -90,7 +95,16 @@ struct MainView: View {
     var detail: some View {
         if let cur = current {
             if cur.id != nil {
-                ChatView(cur, onSend: onSend, onMessageAction: onMessageAction) .environment(\.managedObjectContext, moc)
+                ChatView(cur, onSend: onSend) { (action, message) in
+                    if let oma = onMessageAction {
+                        oma(action, message)
+                    }
+                    if action == .branch {
+                        if let c = conversations.first {
+                            select(c)
+                        }
+                    }
+                } .environment(\.managedObjectContext, moc)
             } else {
                 Text("Error: conversation has no ID !")
             }
@@ -113,7 +127,9 @@ struct MainView: View {
             detail
         }
         .navigationTitle(current?.title ?? "Machato")
-        .navigationSubtitle(current?.date?.formatted() ?? "")
+        #if os(macOS)
+        .navigationSubtitle(current?.date?.formatted() ?? "") // TODO: show date elsewhere
+        #endif
         .toolbar() {
             ToolbarItemGroup(placement: .primaryAction) {
                 if let c = current {
@@ -170,7 +186,7 @@ struct MainView: View {
         self.newConvo = newConvo;
         self.onSend = onSend;
         self.delConv = delConv;
-        self.onMessageAction = onMessageAction;
+        self.onMessageAction = onMessageAction
     }
 }
 

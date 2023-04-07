@@ -13,6 +13,7 @@ enum ChatElementAction {
     case delete
     case copy
     case edit
+    case branch
 }
 
 struct ChatElement: View {
@@ -24,7 +25,8 @@ struct ChatElement: View {
     @State private var copied : Bool = false;
     @State private var copyHover: Bool = false;
     @State private var deleteHover: Bool = false;
-    
+    @State private var branchHover: Bool = false;
+
     @Environment(\.colorScheme) var colorScheme;
     
     // TODO: Temporary hack awaiting latex-swuiftui patch
@@ -90,6 +92,26 @@ struct ChatElement: View {
                 //Spacer()
                 Button {
                     if let oa = onAction {
+                        oa(.branch, message)
+                    }
+                } label: {
+                    Image(systemName: "arrow.triangle.branch")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 15, height: 15)
+                        .padding(5)
+                }
+                    .buttonStyle(.borderless)
+                    .foregroundColor(AppColors.chatForegroundColor)
+                    .background(branchHover ? AppColors.chatButtonBackgroundHover : AppColors.chatButtonBackground)
+                    .cornerRadius(5)
+                    .opacity(hovering ? 1 : 0)
+                    .onHover { b in
+                        self.branchHover = b
+                    }
+                #if os(macOS)
+                Button {
+                    if let oa = onAction {
                         oa(.copy, message)
                         copied = true
                         Task {
@@ -113,6 +135,7 @@ struct ChatElement: View {
                     .onHover { b in
                         self.copyHover = b
                     }
+                #endif
                 Button {
                     if let oa = onAction {
                         oa(.delete, message)

@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
+
 
 @main
 class MachatoApp: App {
     private var chatAPIManager: ChatAPIManager = ChatAPIManager();
+    #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    #endif
     required init() {
         
     }
@@ -47,14 +50,63 @@ class MachatoApp: App {
             }
             try? persistentContainer.viewContext.save()
         case .copy:
+            #if os(macOS)
             if let c = m.content {
                 let pasteboard = NSPasteboard.general
                 pasteboard.clearContents()
                 pasteboard.setString(c, forType: .string)
             }
+            #endif
+        case .branch:
+            branchFromMessage(m)
         default:
             print("Unimplemented action")
         }
+    }
+    
+    func branchFromMessage(_ m: Message) {
+        guard let c = m.belongs_to_convo else {
+            print("Branching from orphaned messaged")
+            return
+        }
+        guard let cs = c.has_settings else {
+            print("Conversation had no settings")
+            return
+        }
+        let newConvo = newConversation()
+        guard let csnew = newConvo.has_settings else {
+            print("New conversation had no settings")
+            return
+        }
+        newConvo.title = c.title
+        csnew.model = cs.model
+        csnew.prompt = cs.prompt
+        csnew.rendering = cs.rendering
+        csnew.stream = cs.stream
+        csnew.override_global = cs.override_global
+        
+        guard let messages = c.has_messages else {
+            print("Conversation had no messages while branching")
+            return
+        }
+        let maybeMessages = messages.sortedArray(using: [NSSortDescriptor(keyPath: \Message.date, ascending: true)]) as? [Message]
+        guard let msgs = maybeMessages else {
+            print("Could not cast message list to [Message]")
+            return
+        }
+        guard let d = m.date else {
+            print("Message had no date")
+            return
+        }
+        let msgsUpToM = msgs.filter { msg in
+            guard let d1 = msg.date else { return false }
+            return d1 <= d || msg.id == m.id
+        }
+        msgsUpToM.forEach { msg in
+            let m2 = newMessage(msg.content ?? "", newConvo, received: msg.is_response, trySave: false)
+            m2.is_finished = true
+        }
+        try? persistentContainer.viewContext.save()
     }
     
     func deleteConversation(_ c: Conversation) {
@@ -161,10 +213,13 @@ class MachatoApp: App {
     }
         
     func initialize() {
-        
+        if PreferencesManager.shared.defaults_initialized == false {
+            PreferencesManager.restoreDefaults()
+        }
     }
 }
 
+#if os(macOS)
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -175,3 +230,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 }
+#endif

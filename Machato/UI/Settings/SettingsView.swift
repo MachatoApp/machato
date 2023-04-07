@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var defaultTemperatureInt : Int = Int(PreferencesManager.shared.defaultTemperature * 10);
     @State private var api_key : String = PreferencesManager.shared.api_key;
     @State private var license_key : String = PreferencesManager.shared.license_key;
+    @State private var hide_conversation_summary : Bool = PreferencesManager.shared.hide_conversation_summary;
     private var convo: Conversation? = nil;
     @State private var convoOverride : Bool = false;
     @Environment(\.dismiss) var dismiss
@@ -31,7 +32,9 @@ struct SettingsView: View {
                 Text(fun.description).tag(fun)
             }
         }
+        #if os(macOS)
         .pickerStyle(RadioGroupPickerStyle())
+        #endif
         .onChange(of: typeset, perform: save)
         Picker(selection: $model, label: Text(convo == nil ? "Default model" : "Model")) {
             ForEach(OpenAIChatModel.allCases) { fun in
@@ -77,6 +80,9 @@ struct SettingsView: View {
                     commonSettings
                 }
             } else {
+                Toggle(isOn: $hide_conversation_summary) {
+                    Text("Hide conversation summary")
+                } .onChange(of: hide_conversation_summary, perform: save)
                 commonSettings
             }
             HStack {
@@ -118,6 +124,7 @@ struct SettingsView: View {
             PreferencesManager.shared.defaultTypeset = typeset
             PreferencesManager.shared.streamChat = stream
             PreferencesManager.shared.license_key = license_key
+            PreferencesManager.shared.hide_conversation_summary = hide_conversation_summary
         }
     }
     

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct PreferencesManager {
     struct StoredPreferenceKey {
@@ -18,9 +19,28 @@ struct PreferencesManager {
         static let default_prompt = "default_prompt"
         static let api_key = "api_key"
         static let license_key = "license_key"
+        static let hide_conversation_summary = "hide_summary"
+        static let defaults_initialized = "defaults_initialized"
     }
     static var shared = PreferencesManager()
+    static func restoreDefaults() {
+        shared.defaultModel = .gpt_35_turbo
+        shared.defaultTemperature = 1.0
+        shared.streamChat = true
+        shared.defaultTypeset = .markdown
+        shared.defaultPrompt = "You are ChatGPT, a large language model trained by OpenAI."
+        shared.hide_conversation_summary = false
+        shared.defaults_initialized = true
+    }
     
+    var hide_conversation_summary : Bool {
+        get { return UserDefaults.standard.bool(forKey: StoredPreferenceKey.hide_conversation_summary) }
+        set(v) { UserDefaults.standard.set(v, forKey: StoredPreferenceKey.hide_conversation_summary) }
+    }
+    var defaults_initialized : Bool {
+        get { return UserDefaults.standard.bool(forKey: StoredPreferenceKey.defaults_initialized) }
+        set(v) { UserDefaults.standard.set(v, forKey: StoredPreferenceKey.defaults_initialized) }
+    }
     var api_key : String {
         get { return UserDefaults.standard.string(forKey: StoredPreferenceKey.api_key) ?? "" }
         set(v) { UserDefaults.standard.set(v, forKey: StoredPreferenceKey.api_key) }
