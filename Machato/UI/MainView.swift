@@ -12,7 +12,7 @@ struct MainView: View {
     public var newConvo : (() -> Conversation)?; // Call back
     public var onSend : ((Conversation, String) -> Void)?;
     public var delConv : ((Conversation) -> Void)?;
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Conversation.userOrder, ascending: true), NSSortDescriptor(keyPath: \Conversation.date, ascending: false)], animation: .default) var conversations: FetchedResults<Conversation>;
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Conversation.userOrder, ascending: true), NSSortDescriptor(keyPath: \Conversation.date, ascending: false)], animation: .none) var conversations: FetchedResults<Conversation>;
     @Environment(\.managedObjectContext) var moc;
     @State private var current : Conversation? = nil;
     public var onMessageAction : ((ChatElementAction, Message) -> Void)? = nil;
@@ -36,45 +36,49 @@ struct MainView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20, height: 20)
-            } .buttonStyle(.borderless).padding([.bottom], 15)
+            } .buttonStyle(.borderless)
             
-            List(conversations, selection: $current) { convo in
-                NavigationLink(value: convo) {
-                    VStack (alignment: .leading) {
-                        HStack {
-                            TextField(text: Binding {
-                                return convo.title ?? "No title"
-                            } set: { v in
-                                convo.title = v
-                                try? moc.save();
-                            }) {
-                                Text("Untitled conversation")
-                            } .padding([.leading], -3).bold()
-                            Spacer()
-                            Button {
-                                if let dc = delConv {
-                                    dc(convo)
-                                }
-                                if current == convo {
-                                    current = nil
-                                }
-                            } label: {
-                                Image(systemName: "trash")
-                            } .buttonStyle(.borderless)
-                        }
-                        if PreferencesManager.shared.hide_conversation_summary == false {
-                            Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .opacity(0.6)
-                                .lineLimit(2)
-                                .padding([.leading], 5)
-                                .id(convo.update) // hack to force update
-                        }
-                    }.id(update)
-                }.padding([.top, .bottom], 5) .onChange(of: current) {nc in
-                    UserDefaults.standard.set(nc?.id?.uuidString ?? "", forKey: "current_uuid")
-                }
-            } .listStyle(.sidebar)
+            List(selection: $current) {
+                Spacer().frame(height:2)
+                ForEach(conversations) {convo in
+                    NavigationLink(value: convo) {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                TextField(text: Binding {
+                                    return convo.title ?? "No title"
+                                } set: { v in
+                                    convo.title = v
+                                    try? moc.save();
+                                }) {
+                                    Text("Untitled conversation")
+                                } .padding([.leading], -3).bold()
+                                Spacer()
+                                Button {
+                                    if let dc = delConv {
+                                        dc(convo)
+                                    }
+                                    if current == convo {
+                                        current = nil
+                                    }
+                                } label: {
+                                    Image(systemName: "trash")
+                                } .buttonStyle(.borderless)
+                            }
+                            if PreferencesManager.shared.hide_conversation_summary == false {
+                                Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .opacity(0.6)
+                                    .lineLimit(2)
+                                    .padding([.leading], 5)
+                                    .id(convo.update) // hack to force update
+                            }
+                        }.id(update)
+                    }.padding([.top, .bottom], 5) .onChange(of: current) {nc in
+                        UserDefaults.standard.set(nc?.id?.uuidString ?? "", forKey: "current_uuid")
+                    }
+
+                } .onMove(perform: move)
+            }
             Divider()
             Button {
                 openSettingsPane = true;
@@ -187,6 +191,27 @@ struct MainView: View {
         self.onSend = onSend;
         self.delConv = delConv;
         self.onMessageAction = onMessageAction
+    }
+    
+    private func move( from source: IndexSet, to destination: Int)
+    {
+        // Make an array of items from fetched results
+        var revisedItems: [ Conversation ] = conversations.map{ $0 }
+
+        // change the order of the items in the array
+        revisedItems.move(fromOffsets: source, toOffset: destination )
+
+        // update the userOrder attribute in revisedItems to
+        // persist the new order. This is done in reverse order
+        // to minimize changes to the indices.
+        for reverseIndex in stride( from: revisedItems.count - 1,
+                                    through: 0,
+                                    by: -1 )
+        {
+            revisedItems[ reverseIndex ].userOrder =
+                Int16( reverseIndex )
+        }
+        try? moc.save()
     }
 }
 

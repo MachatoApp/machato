@@ -141,6 +141,7 @@ class MachatoApp: App {
             Task {
                 await chatAPIManager.streamedChatRequest(conversation) { (event, delta, _, error, errorMessage) in
                     conversation.update.toggle()
+                    guard m.isInserted && !m.isDeleted else { return }
                     switch event {
                     case .end:
                         m.is_finished = true
@@ -149,12 +150,13 @@ class MachatoApp: App {
                     case .delta:
                         guard let d = delta else { return }
                         guard let ds = d.choices.first?.delta.content else { return }
+                        m.content = m.content ?? ""
                         m.content! += ds;
                     case .error:
                         guard let e = error else { return }
                         m.is_error = true
                         m.is_finished = true
-                        if m.content == nil { m.content = "" }
+                        m.content = m.content ?? ""
                         m.content! += "\n\n"
                         m.content = e.description
                         if let em = errorMessage {
@@ -167,6 +169,7 @@ class MachatoApp: App {
         } else {
             Task {
                 await chatAPIManager.sendChatRequest(conversation) { convo, response, error, errorMessage in
+                    guard m.isInserted && !m.isDeleted else { return }
                     guard error == nil else {
                         print("There was an error: \(error!.description)")
                         m.is_error = true

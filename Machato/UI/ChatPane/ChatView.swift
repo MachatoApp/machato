@@ -36,9 +36,9 @@ struct ChatView: View {
                                 }
                             }
                         } .onChange(of: lastMessageSize) { _ in
-                            withAnimation {
+                            // withAnimation {
                                 sv.scrollTo(bottomID)
-                            }
+                            // }
                         }
                     }
                     Spacer().id(bottomID).frame(maxWidth: .infinity, minHeight: 10, maxHeight: 10)
@@ -80,7 +80,7 @@ struct ChatView: View {
         _messages = FetchRequest(entity: Message.entity(),
                                  sortDescriptors: [NSSortDescriptor(keyPath: \Message.date, ascending: true)],
                                  predicate: NSPredicate(format: "%K == %@", #keyPath(Message.belongs_to_convo), ce as CVarArg),
-                                 animation: .default)
+                                 animation: .none)
         self.onMessageAction = onMessageAction
     }
 }

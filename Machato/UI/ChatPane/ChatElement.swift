@@ -45,7 +45,9 @@ struct ChatElement: View {
         switch convoSettings.typeset {
         case .markdown:
             Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update)
-                .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared)
+                .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared).markdownBlockStyle(\.codeBlock) { config in
+                    config.label.padding([.leading, .trailing], 15).padding([.bottom], 25).padding([.top], 15)
+                }
         case .plain:
             Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
         case .mathjax:
