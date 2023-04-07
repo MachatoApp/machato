@@ -11,6 +11,7 @@
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
 		1878C83829D615EC000159EA /* ChatResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83729D615EC000159EA /* ChatResponseError.swift */; };
+		18A4E9AF29E05D72002BA4BD /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18A4E9AE29E05D72002BA4BD /* MarkdownUI */; };
 		18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */; };
 		18B5CD1E29CD1B9B003D8353 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD1D29CD1B9B003D8353 /* MainView.swift */; };
 		18B5CD2029CD1B9C003D8353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B5CD1F29CD1B9C003D8353 /* Assets.xcassets */; };
@@ -24,7 +25,6 @@
 		18B5CD5329D05EC7003D8353 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD5229D05EC7003D8353 /* ChatResponse.swift */; };
 		18B5CD5629D085E0003D8353 /* ChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */; };
 		18B5CD5829D0ADE6003D8353 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5CD5729D0ADE6003D8353 /* Models.swift */; };
-		18B5CD5B29D0E7BA003D8353 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18B5CD5A29D0E7BA003D8353 /* MarkdownUI */; };
 		18B8581829D25CE600A688DA /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 18B8581729D25CE600A688DA /* Highlightr */; };
 		18B8581A29D2670800A688DA /* Memoize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581929D2670800A688DA /* Memoize.swift */; };
 		18B8581C29D3593F00A688DA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581B29D3593F00A688DA /* SettingsView.swift */; };
@@ -61,6 +61,7 @@
 		1878C82F29D5BEC1000159EA /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		1878C83329D5EFDC000159EA /* HomePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePane.swift; sourceTree = "<group>"; };
 		1878C83729D615EC000159EA /* ChatResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponseError.swift; sourceTree = "<group>"; };
+		18A4E9AC29E05D60002BA4BD /* swift-markdown-ui */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-markdown-ui"; path = "../../../swift-markdown-ui"; sourceTree = "<group>"; };
 		18B5CD1829CD1B9B003D8353 /* Machato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Machato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B5CD1B29CD1B9B003D8353 /* MachatoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoApp.swift; sourceTree = "<group>"; };
 		18B5CD1D29CD1B9B003D8353 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -95,8 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A4E9AF29E05D72002BA4BD /* MarkdownUI in Frameworks */,
 				18B8581829D25CE600A688DA /* Highlightr in Frameworks */,
-				18B5CD5B29D0E7BA003D8353 /* MarkdownUI in Frameworks */,
 				18B8582829D4C12000A688DA /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +154,13 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		18A4E9AD29E05D72002BA4BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		18B5CD0F29CD1B9A003D8353 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +168,7 @@
 				18B5CD2C29CD1B9C003D8353 /* MachatoTests */,
 				18B5CD3629CD1B9C003D8353 /* MachatoUITests */,
 				18B5CD1929CD1B9B003D8353 /* Products */,
+				18A4E9AD29E05D72002BA4BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +185,7 @@
 		18B5CD1A29CD1B9B003D8353 /* Machato */ = {
 			isa = PBXGroup;
 			children = (
+				18A4E9AC29E05D60002BA4BD /* swift-markdown-ui */,
 				18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */,
 				18B8581D29D3981E00A688DA /* Preferences */,
 				18B5CD4D29CFBFE5003D8353 /* HTTP */,
@@ -276,9 +286,9 @@
 			);
 			name = Machato;
 			packageProductDependencies = (
-				18B5CD5A29D0E7BA003D8353 /* MarkdownUI */,
 				18B8581729D25CE600A688DA /* Highlightr */,
 				18B8582729D4C12000A688DA /* LaTeXSwiftUI */,
+				18A4E9AE29E05D72002BA4BD /* MarkdownUI */,
 			);
 			productName = Machato;
 			productReference = 18B5CD1829CD1B9B003D8353 /* Machato.app */;
@@ -353,7 +363,6 @@
 			);
 			mainGroup = 18B5CD0F29CD1B9A003D8353;
 			packageReferences = (
-				18B5CD5929D0E7BA003D8353 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */,
 				18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
 			);
@@ -758,14 +767,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		18B5CD5929D0E7BA003D8353 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raspu/Highlightr";
@@ -785,9 +786,8 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		18B5CD5A29D0E7BA003D8353 /* MarkdownUI */ = {
+		18A4E9AE29E05D72002BA4BD /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18B5CD5929D0E7BA003D8353 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
 		18B8581729D25CE600A688DA /* Highlightr */ = {

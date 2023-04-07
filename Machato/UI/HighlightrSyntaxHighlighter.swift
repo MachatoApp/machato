@@ -7,8 +7,8 @@
 
 import Foundation
 import SwiftUI
-import MarkdownUI
 import Highlightr
+import MarkdownUI
 
 class HighlightrSyntaxHighlighter: CodeSyntaxHighlighter {
     private var theme: String
