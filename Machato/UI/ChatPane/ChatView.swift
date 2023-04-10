@@ -124,7 +124,7 @@ struct CustomTextField: View {
                     localString = ""
                     return
                 }
-                if v.last == "\n" && !isShiftKeyPressed() {
+                if v.last == "\n" && !isShiftKeyPressed() && v.count - localString.count == 1 {
                     self.send()
                 } else {
                     localString = v
