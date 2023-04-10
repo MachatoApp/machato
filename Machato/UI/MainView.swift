@@ -29,7 +29,7 @@ struct MainView: View {
             // Divider()
             Button() {
                 if let nc = newConvo {
-                    current = nc()
+                    select(nc())
                 }
             } label: {
                 Image(systemName: "plus.square")
@@ -54,9 +54,7 @@ struct MainView: View {
                                 } .padding([.leading], -3).bold()
                                 Spacer()
                                 Button {
-                                    if let dc = delConv {
-                                        dc(convo)
-                                    }
+                                    delConv?(convo)
                                     if current == convo {
                                         current = nil
                                     }
@@ -81,17 +79,13 @@ struct MainView: View {
             }
             Divider()
             Button {
-                openSettingsPane = true;
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
             } label: {
                 Label("Settings", systemImage: "gearshape").labelStyle(.titleAndIcon)
             }
             .buttonStyle(.plain).padding([.bottom], 15)
             .padding([.top], 5)
-            .sheet(isPresented: $openSettingsPane) {
-                SettingsView()
-            } .onChange(of: openSettingsPane) { _ in
-                update.toggle()
-            }
+            
         }
     }
     
@@ -100,15 +94,15 @@ struct MainView: View {
         if let cur = current {
             if cur.id != nil {
                 ChatView(cur, onSend: onSend) { (action, message) in
-                    if let oma = onMessageAction {
-                        oma(action, message)
-                    }
+                    onMessageAction?(action, message)
                     if action == .branch {
                         if let c = conversations.first {
                             select(c)
                         }
                     }
-                } .environment(\.managedObjectContext, moc)
+                } onStopGenerating: { m in
+                    onMessageAction?(.stop, m)
+                }.environment(\.managedObjectContext, moc)
             } else {
                 Text("Error: conversation has no ID !")
             }
@@ -150,7 +144,7 @@ struct MainView: View {
                     .sheet(isPresented: $openConvoSettingsPane) {
                         c.update.toggle()
                     } content: {
-                        SettingsView(forConvo: c)
+                        ConversationSpecificSettings(forConvo: c)
                     }
                 }
             }

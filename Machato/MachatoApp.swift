@@ -7,16 +7,19 @@
 
 import SwiftUI
 import CoreData
-
+import Sparkle
 
 @main
 class MachatoApp: App {
     private var chatAPIManager: ChatAPIManager = ChatAPIManager();
+    private let updaterController: SPUStandardUpdaterController = PreferencesManager.shared.updaterController
+
     #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     #endif
+    
     required init() {
-        
+
     }
     
     private var persistentContainer : NSPersistentContainer = PreferencesManager.shared.persistentContainer;
@@ -31,6 +34,13 @@ class MachatoApp: App {
                 .onAppear() {
                     self.initialize()
                 }
+        }.commands {
+            CommandGroup(after: .appInfo) {
+                CheckForUpdatesView(updater: updaterController.updater)
+            }
+        }
+        Settings {
+            AppSettingsView(updater: updaterController.updater)
         }
     }
     
@@ -59,6 +69,11 @@ class MachatoApp: App {
             #endif
         case .branch:
             branchFromMessage(m)
+        case .stop:
+            guard let c = m.belongs_to_convo else { return}
+            let nm = newMessage(m.content ?? "N/A", c, received: true, trySave: false)
+            nm.is_finished = true
+            onMessageAction(.delete, m)
         default:
             print("Unimplemented action")
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 import Sparkle
 
-struct SettingsView: View {
+struct ConversationSpecificSettings: View {
 
     @State private var stream : Bool = PreferencesManager.shared.streamChat;
     @State private var typeset : TypesetFunctionality = PreferencesManager.shared.defaultTypeset;
@@ -29,7 +29,15 @@ struct SettingsView: View {
         Toggle(isOn: $stream) {
             Text("Stream chat response")
         } .onChange(of: stream, perform: save)
-
+        Picker(selection: $typeset, label: Text("Text rendering capabilities")) {
+            ForEach(TypesetFunctionality.allCases) { fun in
+                Text(fun.description).tag(fun)
+            }
+        }
+//        #if os(macOS)
+//        .pickerStyle(RadioGroupPickerStyle())
+//        #endif
+        .onChange(of: typeset, perform: save)
         Picker(selection: $model, label: Text(convo == nil ? "Default model" : "Model")) {
             ForEach(OpenAIChatModel.allCases) { fun in
                 Text(fun.rawValue).tag(fun)
@@ -47,6 +55,19 @@ struct SettingsView: View {
                 defaultTemperatureInt -= 1
                 defaultTemperatureInt = max(defaultTemperatureInt, 0)
             } .onChange(of: defaultTemperatureInt, perform: save)
+        }
+        if convo == nil {
+            HStack {
+                Text("API Key")
+                TextField("API key", text: $api_key)
+                    .onChange(of: api_key, perform: save)
+            }
+            HStack {
+                Text("License Key")
+                TextField("Gumroad license key", text: $license_key)
+                    .onChange(of: license_key, perform: save)
+            }
+
         }
     }
     

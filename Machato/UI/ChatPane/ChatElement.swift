@@ -14,6 +14,8 @@ enum ChatElementAction {
     case copy
     case edit
     case branch
+    case stop
+    case regenerate
 }
 
 struct ChatElement: View {
@@ -48,6 +50,7 @@ struct ChatElement: View {
                 .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared).markdownBlockStyle(\.codeBlock) { config in
                     config.label.padding([.leading, .trailing], 15).padding([.bottom], 25).padding([.top], 15)
                 }
+                .fixedSize(horizontal: false, vertical: true)
         case .plain:
             Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
         case .mathjax:
@@ -59,50 +62,50 @@ struct ChatElement: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            // TODO: change icon alignment to .top and ajust padding values accordingly
-            HStack(alignment: .top) {
-                if message.is_response {
-                    if message.is_finished {
-                        Label("Received", systemImage: "arrowshape.turn.up.left.fill").labelStyle(.iconOnly) .padding(10).padding([.top], 1)
+        VStack (spacing: 0){
+            ZStack(alignment: .bottomTrailing) {
+                // TODO: change icon alignment to .top and ajust padding values accordingly
+                HStack(alignment: .top) {
+                    if message.is_response {
+                        if message.is_finished {
+                            Label("Received", systemImage: "arrowshape.turn.up.left.fill").labelStyle(.iconOnly) .padding(10).padding([.top], 1)
+                        } else {
+                            ProgressView().scaleEffect(0.5).padding([.leading, .trailing], 3).padding([.bottom, .top], 2)
+                        }
                     } else {
-                        ProgressView().scaleEffect(0.5).padding([.leading, .trailing], 3).padding([.bottom, .top], 2)
+                        Label("Sent", systemImage: "arrowshape.right.fill").labelStyle(.iconOnly) .padding(10) .padding([.top], 1)
                     }
-                } else {
-                    Label("Sent", systemImage: "arrowshape.right.fill").labelStyle(.iconOnly) .padding(10) .padding([.top], 1)
-                }
-                if message.is_error {
-                    Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update).markdownBlockStyle(\.codeBlock) { config in
-                        config.label.markdownTextStyle {
-                            FontFamilyVariant(.monospaced)
+                    if message.is_error {
+                        Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update).markdownBlockStyle(\.codeBlock) { config in
+                            config.label.markdownTextStyle {
+                                FontFamilyVariant(.monospaced)
+                                ForegroundColor(.red)
+                            }.background(.red.opacity(0.25))
+                        }.markdownTextStyle(\.text) {
                             ForegroundColor(.red)
-                        }.background(.red.opacity(0.25))
-                    }.markdownTextStyle(\.text) {
-                        ForegroundColor(.red)
+                        }
+                    } else {
+                        contentView
                     }
-                } else {
-                    contentView
-                }
-                Spacer()
-            } .onChange(of: colorScheme) { nv in
-                Task {
-                    try await Task.sleep(for: .milliseconds(100))
-                    update += 1
-                }
-            }
-            HStack {
-                //Spacer()
-                Button {
-                    if let oa = onAction {
-                        oa(.branch, message)
+                    Spacer()
+                } .onChange(of: colorScheme) { nv in
+                    Task {
+                        try await Task.sleep(for: .milliseconds(100))
+                        update += 1
                     }
-                } label: {
-                    Image(systemName: "arrow.triangle.branch")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 15, height: 15)
-                        .padding(5)
-                }
+                }.padding([.top, .bottom], 5)
+                .background(message.is_response ? AppColors.receivedMessageBackground : AppColors.sentMessageBackground)
+                HStack {
+                    //Spacer()
+                    Button {
+                        onAction?(.branch, message)
+                    } label: {
+                        Image(systemName: "arrow.triangle.branch")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 15, height: 15)
+                            .padding(5)
+                    }
                     .buttonStyle(.borderless)
                     .foregroundColor(AppColors.chatForegroundColor)
                     .background(branchHover ? AppColors.chatButtonBackgroundHover : AppColors.chatButtonBackground)
@@ -111,23 +114,22 @@ struct ChatElement: View {
                     .onHover { b in
                         self.branchHover = b
                     }
-                #if os(macOS)
-                Button {
-                    if let oa = onAction {
-                        oa(.copy, message)
-                        copied = true
-                        Task {
-                            try await Task.sleep(for: .seconds(2))
-                            copied = false
-                        }
+#if os(macOS)
+                    Button {
+                            onAction?(.copy, message)
+                            copied = true
+                            Task {
+                                try await Task.sleep(for: .seconds(2))
+                                copied = false
+                            }
+                        
+                    } label: {
+                        Image(systemName: copied ? "checkmark" : "list.clipboard")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 15, height: 15)
+                            .padding(5)
                     }
-                } label: {
-                    Image(systemName: copied ? "checkmark" : "list.clipboard")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 15, height: 15)
-                        .padding(5)
-                }
                     .buttonStyle(.borderless)
                     .foregroundColor(AppColors.chatForegroundColor)
                     .background(copyHover ? AppColors.chatButtonBackgroundHover : AppColors.chatButtonBackground)
@@ -137,18 +139,16 @@ struct ChatElement: View {
                     .onHover { b in
                         self.copyHover = b
                     }
-                #endif
-                Button {
-                    if let oa = onAction {
-                        oa(.delete, message)
+#endif
+                    Button {
+                        onAction?(.delete, message)
+                    } label: {
+                        Image(systemName: "trash")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 15, height: 15)
+                            .padding(5)
                     }
-                } label: {
-                    Image(systemName: "trash")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 15, height: 15)
-                        .padding(5)
-                }
                     .buttonStyle(.borderless)
                     .foregroundColor(AppColors.deleteButtonForeground)
                     .background(deleteHover ? AppColors.chatButtonBackgroundHover : AppColors.chatButtonBackground)
@@ -158,13 +158,13 @@ struct ChatElement: View {
                     .onHover { b in
                         self.deleteHover = b
                     }
-
+                    
+                } .padding([.bottom], 10)
+            } .onHover { over in
+                hovering = over
             }
-        } .onHover { over in
-            hovering = over
+            Divider()
         }
-        
-        Divider()
     }
     
     init(_ m: Message, onAction: ((ChatElementAction, Message) -> Void)? = nil) {

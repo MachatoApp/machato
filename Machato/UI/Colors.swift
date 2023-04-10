@@ -17,7 +17,12 @@ struct AppColors {
     static public let chatDeleteButtonBackground: Color = chatButtonBackground
     static public let chatDeleteButtonBackgroundHover: Color = chatButtonBackgroundHover
     static public let chipBackgroundColor : Color = Color(light: .white, dark: Color(rgba: 0x2a2a2aff))
+    static public let sentMessageBackground : Color = Color(light: Color(rgba: 0xfafafaff), dark: Color(rgba: 0x181818ff))
+    static public let receivedMessageBackground : Color = chatBackgroundColor
     
+    static public let redButtonBackground : Color = Color(light: Color(rgba: 0xfa7171ff), dark: Color(rgba: 0xbd3737ff));
+    static public let redButtonForeground: Color = .white;
+
     static public let darkCodeTheme = "obsidian"
     static public let lightCodeTheme = "xcode"
 
