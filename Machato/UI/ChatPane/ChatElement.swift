@@ -30,6 +30,10 @@ struct ChatElement: View {
     @State private var deleteHover: Bool = false;
     @State private var branchHover: Bool = false;
     @ObservedObject private var pref = PreferencesManager.shared;
+    private let allowEdit : Bool;
+    @Binding private var editing : Bool;
+    @State private var editHover : Bool = false;
+    @State private var regenerateHover : Bool = false;
 
     @Environment(\.colorScheme) var colorScheme;
     
@@ -46,29 +50,36 @@ struct ChatElement: View {
     
     @ViewBuilder
     var contentView: some View {
-        switch convoSettings.typeset {
-        case .markdown:
-            Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update)
-                .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared).markdownBlockStyle(\.codeBlock) { config in
-                    config.label.padding([.leading, .trailing], 15).padding([.bottom], 15).padding([.top], 15)
-                }
-                .fixedSize(horizontal: false, vertical: true)
-                .markdownTextStyle {
-                    FontSize(pref.fontSize)
-                } .onChange(of: pref.fontSize) { _ in
-                    update += 1
-                }
-        case .plain:
-            Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
-                .font(.system(size: pref.fontSize))
-
-        case .mathjax:
-            LaTeX(messageContentLatexPatched, scale: pref.fontSize/13).padding(10).textSelection(.enabled).id(update)
-                .foregroundColor(AppColors.chatForegroundColor)
-                .parsingMode(.onlyEquations)
-                .errorMode(.original)
-                .font(.system(size: pref.fontSize))
-            
+        if editing && allowEdit {
+            TextEditor(text: Binding {
+                return message.content ?? ""
+            } set: { msg in message.content = msg})
+            .font(.system(size: pref.fontSize))
+        } else {
+            switch convoSettings.typeset {
+            case .markdown:
+                Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update)
+                    .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared).markdownBlockStyle(\.codeBlock) { config in
+                        config.label.padding([.leading, .trailing], 15).padding([.bottom], 15).padding([.top], 15)
+                    }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .markdownTextStyle {
+                        FontSize(pref.fontSize)
+                    } .onChange(of: pref.fontSize) { _ in
+                        update += 1
+                    }
+            case .plain:
+                Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
+                    .font(.system(size: pref.fontSize))
+                
+            case .mathjax:
+                LaTeX(messageContentLatexPatched, scale: pref.fontSize/13).padding(10).textSelection(.enabled).id(update)
+                    .foregroundColor(AppColors.chatForegroundColor)
+                    .parsingMode(.onlyEquations)
+                    .errorMode(.original)
+                    .font(.system(size: pref.fontSize))
+                
+            }
         }
     }
     
@@ -113,8 +124,47 @@ struct ChatElement: View {
                         update += 1
                     }
                 }.padding([.top, .bottom], 5)
-                .background(message.is_response ? AppColors.receivedMessageBackground : AppColors.sentMessageBackground)
+                    .background(message.is_response ? AppColors.receivedMessageBackground : AppColors.sentMessageBackground)
                 HStack {
+                    if allowEdit {
+                        Button {
+                            self.editing.toggle()
+                            if editing == false {
+                                onAction?(.regenerate, message)
+                            }
+                        } label: {
+                            Image(systemName: "pencil")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 15, height: 15)
+                                .padding(5)
+                        }
+                        .buttonStyle(.borderless)
+                        .foregroundColor(AppColors.chatForegroundColor)
+                        .background(editHover ? AppColors.chatButtonBackgroundHover : AppColors.chatButtonBackground)
+                        .cornerRadius(5)
+                        .opacity(hovering ? 1 : 0)
+                        .onHover { b in
+                            self.editHover = b
+                        }
+                        Button {
+                            onAction?(.regenerate, message)
+                        } label: {
+                            Image(systemName: "arrow.2.squarepath")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 15, height: 15)
+                                .padding(5)
+                        }
+                        .buttonStyle(.borderless)
+                        .foregroundColor(AppColors.chatForegroundColor)
+                        .background(regenerateHover ? AppColors.chatButtonBackgroundHover : AppColors.chatButtonBackground)
+                        .cornerRadius(5)
+                        .opacity(hovering ? 1 : 0)
+                        .onHover { b in
+                            self.regenerateHover = b
+                        }
+                    }
                     //Spacer()
                     Button {
                         onAction?(.branch, message)
@@ -135,12 +185,12 @@ struct ChatElement: View {
                     }
 #if os(macOS)
                     Button {
-                            onAction?(.copy, message)
-                            copied = true
-                            Task {
-                                try await Task.sleep(for: .seconds(2))
-                                copied = false
-                            }
+                        onAction?(.copy, message)
+                        copied = true
+                        Task {
+                            try await Task.sleep(for: .seconds(2))
+                            copied = false
+                        }
                         
                     } label: {
                         Image(systemName: copied ? "checkmark" : "list.clipboard")
@@ -186,7 +236,7 @@ struct ChatElement: View {
         }
     }
     
-    init(_ m: Message, onAction: ((ChatElementAction, Message) -> Void)? = nil) {
+    init(_ m: Message, allowEdit: Bool, editing: Binding<Bool>, onAction: ((ChatElementAction, Message) -> Void)? = nil) {
         _message = StateObject(wrappedValue: m)
         self.onAction = onAction
         if let c = m.belongs_to_convo {
@@ -194,5 +244,7 @@ struct ChatElement: View {
         } else {
             convoSettings = ConversationSettings()
         }
+        self.allowEdit = allowEdit
+        _editing = editing
     }
 }

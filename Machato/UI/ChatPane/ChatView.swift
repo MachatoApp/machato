@@ -20,9 +20,15 @@ struct ChatView: View {
     private var lastMessageSize : Int {
         return messages.last?.content?.count ?? 0
     }
+    @State private var lastSent: Message? = nil;
+    @State private var editing: Bool = false;
+    
+    func updateLastSent() {
+        lastSent = messages.filter { $0.is_response == false }.last;
+    }
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 0) {
             ZStack (alignment: .bottomLeading){
                 ScrollViewReader { sv in
                     ScrollView(.vertical) {
@@ -30,7 +36,12 @@ struct ChatView: View {
                             // Text(convo.date.description)
                             Divider().padding([.bottom], 0)
                             ForEach(messages) { message in
-                                ChatElement(message, onAction: onMessageAction)  .contextMenu {
+                                ChatElement(message, allowEdit: message == lastSent, editing: $editing) { (action, message) in
+                                    onMessageAction?(action, message)
+                                    if [.regenerate, .delete].contains(action) {
+                                        updateLastSent()
+                                    }
+                                }  .contextMenu {
                                     Button {
                                         if let om = onMessageAction { om(.delete, message) }
                                     } label: {
@@ -39,7 +50,9 @@ struct ChatView: View {
                                 }
                             } .onChange(of: lastMessageSize) { _ in
                                 sv.scrollTo(bottomID)
-                            }
+                            } .onChange(of: messages.count) { _ in
+                                updateLastSent()
+                            } .onAppear(perform: updateLastSent)
                         }
                         Spacer().id(bottomID).frame(maxWidth: .infinity, minHeight: 10, maxHeight: 10)
                     }.onAppear {
@@ -58,25 +71,47 @@ struct ChatView: View {
                         .padding(10)
                         .background(AppColors.redButtonBackground)
                         .cornerRadius(5) .zIndex(1)
+                        .padding([.bottom], 10)
                         .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
                     }
                     Spacer()
                 }
             }
             Divider()
-            HStack {
-                CustomTextField(string: $message, prompt: "Type your message", onSend: sendMessage)
-                    .textFieldStyle(.plain)
-                    .submitLabel(.send)
-                    .onSubmit(sendMessage)
-                Button() {
-                    self.sendMessage()
+            if editing {
+                Button {
+                    editing = false
+                    if let m = lastSent {
+                        onMessageAction?(.regenerate, m)
+                    }
+                    updateLastSent()
                 } label: {
-                    Label("Send", systemImage: "paperplane").labelStyle(.iconOnly)
-                } .buttonStyle(.borderless) .disabled(message.count == 0)
+                    Spacer()
+                    Label("Send edit", systemImage: "paperplane").padding([.top, .bottom], 14)
+                    Spacer()
+                }
+                .buttonStyle(.borderless)
+                .background(.thickMaterial)
+                .foregroundColor(AppColors.chatForegroundColor)
+            } else {
+                HStack {
+                    
+                    CustomTextField(string: $message, prompt: "Type your message", onSend: sendMessage)
+                        .textFieldStyle(.plain)
+                        .submitLabel(.send)
+                        .onSubmit(sendMessage)
+                        .padding([.top, .bottom], 14)
+                        .scrollContentBackground(.hidden)
+                        .background(AppColors.chatBackgroundColor)
+                    Button() {
+                        self.sendMessage()
+                    } label: {
+                        Label("Send", systemImage: "paperplane").labelStyle(.iconOnly)
+                    } .buttonStyle(.borderless) .disabled(message.count == 0)
+                }
+                .padding([.leading, .trailing], 15)
+                
             }
-            .padding([.bottom, .leading, .trailing], 15)
-            .padding([.top], 5)
         }.background(AppColors.chatBackgroundColor)
     }
     

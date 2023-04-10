@@ -28,7 +28,7 @@ class MachatoApp: App {
     var body: some Scene {
         WindowGroup {
             MainView (newConvo: newConversation,
-                      onSend: onSend,
+                      onSend: { (a, b) in self.onSend(conversation: a, messageString: b) },
                       delConv: deleteConversation,
                       onMessageAction: onMessageAction) .environment(\.managedObjectContext, persistentContainer.viewContext)
                 .onAppear() {
@@ -74,6 +74,14 @@ class MachatoApp: App {
             let nm = newMessage(m.content ?? "N/A", c, received: true, trySave: false)
             nm.is_finished = true
             onMessageAction(.delete, m)
+        case .regenerate:
+            guard let c = m.belongs_to_convo else { return }
+            guard let lm = c.last_message else { return }
+            if lm.is_response == true {
+                onMessageAction(.delete, lm)
+            }
+            let content : String = m.content ?? ""
+            onSend(conversation: c, messageString: content, msg: lm)
         default:
             print("Unimplemented action")
         }
@@ -146,11 +154,15 @@ class MachatoApp: App {
         return c
     }
     
-    func onSend(conversation: Conversation, messageString: String) {
+    func onSend(conversation: Conversation, messageString: String, msg: Message? = nil) {
         guard let msgs = conversation.has_messages else { return }
         let wasFirstMessage = msgs.count == 0;
-        newMessage(messageString, conversation)
-        let m = newMessage("", conversation, received: true, trySave: false)
+        let m: Message;
+        if msg == nil {
+            newMessage(messageString, conversation)
+        }
+        m = newMessage("", conversation, received: true, trySave: false)
+
         let settings = PreferencesManager.getConversationSettings(conversation)
         if settings.stream {
             Task {
