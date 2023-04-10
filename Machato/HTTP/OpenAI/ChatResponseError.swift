@@ -26,4 +26,5 @@ enum ChatResponseError: CaseIterable, Identifiable {
     }
     static let api_key_empty = "API key is empty. Make sure to set your API key in Machato's settings."
     static let license_invalid_message = "Your license key was invalid."
+    static let license_key_empty = "Your license key is empty. Make sure to add your Gumroad license key to Machato's settings"
 }

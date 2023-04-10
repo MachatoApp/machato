@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183271A929E4656B00B3850E /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 183271A829E4656B00B3850E /* LaTeXSwiftUI */; };
 		186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186812F029DD944500F98411 /* GumroadLicenseCheck.swift */; };
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
@@ -31,7 +32,6 @@
 		18B8581F29D3983800A688DA /* TypesetFunctionalities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581E29D3983800A688DA /* TypesetFunctionalities.swift */; };
 		18B8582329D3A34C00A688DA /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8582229D3A34C00A688DA /* PreferencesManager.swift */; };
 		18B8582529D49D1100A688DA /* ConversationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8582429D49D1100A688DA /* ConversationSettings.swift */; };
-		18B8582829D4C12000A688DA /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18B8582729D4C12000A688DA /* LaTeXSwiftUI */; };
 		18D71EAD29E1F21A00B33A30 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 18D71EAC29E1F21A00B33A30 /* Sparkle */; };
 		18D71EB029E1F6EE00B33A30 /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EAF29E1F6EE00B33A30 /* Sparkle.swift */; };
 		18D71EB329E2B62F00B33A30 /* UpdaterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EB229E2B62F00B33A30 /* UpdaterSettingsView.swift */; };
@@ -39,6 +39,7 @@
 		18D71EB729E2C10F00B33A30 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EB629E2C10F00B33A30 /* AppearanceSettings.swift */; };
 		18D71EB929E2C3A000B33A30 /* ConversationSpecificSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EB829E2C3A000B33A30 /* ConversationSpecificSettingsView.swift */; };
 		18D71EBB29E2C4C800B33A30 /* KeysSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EBA29E2C4C800B33A30 /* KeysSettingsView.swift */; };
+		18D71EBD29E4304600B33A30 /* ToolbarSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EBC29E4304600B33A30 /* ToolbarSettings.swift */; };
 		18F8504E29D1E796005CCD4A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8504D29D1E796005CCD4A /* Colors.swift */; };
 		18F8505B29D216B6005CCD4A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8505A29D216B6005CCD4A /* Event.swift */; };
 		18F8505D29D216BD005CCD4A /* EventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8505C29D216BD005CCD4A /* EventSource.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183271A729E4650B00B3850E /* LaTeXSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LaTeXSwiftUI; path = ../../../LaTeXSwiftUI; sourceTree = "<group>"; };
 		186812F029DD944500F98411 /* GumroadLicenseCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadLicenseCheck.swift; sourceTree = "<group>"; };
 		1878C82F29D5BEC1000159EA /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		1878C83329D5EFDC000159EA /* HomePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePane.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		18D71EB629E2C10F00B33A30 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		18D71EB829E2C3A000B33A30 /* ConversationSpecificSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSpecificSettingsView.swift; sourceTree = "<group>"; };
 		18D71EBA29E2C4C800B33A30 /* KeysSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSettingsView.swift; sourceTree = "<group>"; };
+		18D71EBC29E4304600B33A30 /* ToolbarSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarSettings.swift; sourceTree = "<group>"; };
 		18F8504D29D1E796005CCD4A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		18F8505A29D216B6005CCD4A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		18F8505C29D216BD005CCD4A /* EventSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSource.swift; sourceTree = "<group>"; };
@@ -111,9 +114,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A4E9AF29E05D72002BA4BD /* MarkdownUI in Frameworks */,
+				183271A929E4656B00B3850E /* LaTeXSwiftUI in Frameworks */,
 				18D71EAD29E1F21A00B33A30 /* Sparkle in Frameworks */,
 				18B8581829D25CE600A688DA /* Highlightr in Frameworks */,
-				18B8582829D4C12000A688DA /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +160,7 @@
 			children = (
 				18B5CD4829CF2714003D8353 /* ChatView.swift */,
 				18B5CD4B29CF2899003D8353 /* ChatElement.swift */,
+				18D71EBC29E4304600B33A30 /* ToolbarSettings.swift */,
 			);
 			path = ChatPane;
 			sourceTree = "<group>";
@@ -206,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				18D71EB129E2035800B33A30 /* Info.plist */,
+				183271A729E4650B00B3850E /* LaTeXSwiftUI */,
 				18A4E9AC29E05D60002BA4BD /* swift-markdown-ui */,
 				18B5CD5429D085E0003D8353 /* ChatModel.xcdatamodeld */,
 				18B8581D29D3981E00A688DA /* Preferences */,
@@ -317,9 +322,9 @@
 			name = Machato;
 			packageProductDependencies = (
 				18B8581729D25CE600A688DA /* Highlightr */,
-				18B8582729D4C12000A688DA /* LaTeXSwiftUI */,
 				18A4E9AE29E05D72002BA4BD /* MarkdownUI */,
 				18D71EAC29E1F21A00B33A30 /* Sparkle */,
+				183271A829E4656B00B3850E /* LaTeXSwiftUI */,
 			);
 			productName = Machato;
 			productReference = 18B5CD1829CD1B9B003D8353 /* Machato.app */;
@@ -395,7 +400,6 @@
 			mainGroup = 18B5CD0F29CD1B9A003D8353;
 			packageReferences = (
 				18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */,
-				18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
 				18D71EAB29E1F21A00B33A30 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 18B5CD1929CD1B9B003D8353 /* Products */;
@@ -461,6 +465,7 @@
 				18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */,
 				18B5CD4C29CF2899003D8353 /* ChatElement.swift in Sources */,
 				18B5CD5829D0ADE6003D8353 /* Models.swift in Sources */,
+				18D71EBD29E4304600B33A30 /* ToolbarSettings.swift in Sources */,
 				18B5CD4F29CFC74D003D8353 /* ChatRequest.swift in Sources */,
 				18D71EB729E2C10F00B33A30 /* AppearanceSettings.swift in Sources */,
 				18F8505F29D216C1005CCD4A /* EventStreamParser.swift in Sources */,
@@ -628,7 +633,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
 				DEVELOPMENT_TEAM = BHFDJ8TRX6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -644,7 +649,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -668,7 +673,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
 				DEVELOPMENT_TEAM = BHFDJ8TRX6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -684,7 +689,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -815,14 +820,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
-			};
-		};
 		18D71EAB29E1F21A00B33A30 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
@@ -834,6 +831,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		183271A829E4656B00B3850E /* LaTeXSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LaTeXSwiftUI;
+		};
 		18A4E9AE29E05D72002BA4BD /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MarkdownUI;
@@ -842,11 +843,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */;
 			productName = Highlightr;
-		};
-		18B8582729D4C12000A688DA /* LaTeXSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 18B8582629D4C12000A688DA /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
-			productName = LaTeXSwiftUI;
 		};
 		18D71EAC29E1F21A00B33A30 /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;

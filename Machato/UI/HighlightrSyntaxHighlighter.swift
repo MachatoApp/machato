@@ -14,6 +14,7 @@ class HighlightrSyntaxHighlighter: CodeSyntaxHighlighter {
     private var theme: String
     private var highlightr: Highlightr
     private var availableLanguages : [String];
+    private var availableThemes : [String];
     private var memoizedIsLanguageSupported: (String?) -> Bool = { _ in return true };
     
     public static let shared : HighlightrSyntaxHighlighter = HighlightrSyntaxHighlighter()
@@ -26,20 +27,23 @@ class HighlightrSyntaxHighlighter: CodeSyntaxHighlighter {
     init(theme: String = "xcode") {
         self.theme = theme
         highlightr = Highlightr()!
-        highlightr.setTheme(to: theme)
         availableLanguages = highlightr.supportedLanguages()
+        availableThemes = highlightr.availableThemes()
         memoizedIsLanguageSupported = Memoize.memoize(isLanguageSupported)
         print("Initiating highlightr instance")
+        setTheme(theme: theme)
     }
     
     func setTheme(theme: String) {
         self.theme = theme
         highlightr.setTheme(to: theme)
+        highlightr.theme.setCodeFont(RPFont.monospacedSystemFont(ofSize: PreferencesManager.shared.fontSize, weight: .regular))
     }
 
     func highlightCode(_ code: String, language: String?) -> Text {
         let highlightedCode = highlightr.highlight(code, as: memoizedIsLanguageSupported(language) ? language : nil)
         guard let hc = highlightedCode else { return Text(code) }
-        return Text(AttributedString(hc))
+        var ashc = AttributedString(hc)
+        return Text(ashc).font(.system(size: PreferencesManager.shared.fontSize, design: .monospaced))
     }
 }

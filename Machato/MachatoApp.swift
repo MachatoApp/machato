@@ -234,6 +234,9 @@ class MachatoApp: App {
         if PreferencesManager.shared.defaults_initialized == false {
             PreferencesManager.restoreDefaults()
         }
+        if PreferencesManager.shared.fontSize < 10 {
+            PreferencesManager.shared.fontSize = 13;
+        }
     }
 }
 

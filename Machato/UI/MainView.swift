@@ -16,7 +16,6 @@ struct MainView: View {
     @Environment(\.managedObjectContext) var moc;
     @State private var current : Conversation? = nil;
     public var onMessageAction : ((ChatElementAction, Message) -> Void)? = nil;
-    @State private var openSettingsPane : Bool = false;
     @State private var openConvoSettingsPane : Bool = false;
     @Environment(\.openWindow) var openWindow;
     @State private var update : Bool = false;
@@ -79,7 +78,7 @@ struct MainView: View {
             }
             Divider()
             Button {
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                openSettings()
             } label: {
                 Label("Settings", systemImage: "gearshape").labelStyle(.titleAndIcon)
             }
@@ -113,9 +112,13 @@ struct MainView: View {
                     select(nc())
                 }
             } openSettings: {
-                openSettingsPane = true
+                openSettings()
             }
         }
+    }
+    
+    func openSettings() {
+        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
     }
     
     var body: some View {
@@ -126,26 +129,12 @@ struct MainView: View {
         }
         .navigationTitle(current?.title ?? "Machato")
         #if os(macOS)
-        .navigationSubtitle(current?.date?.formatted() ?? "") // TODO: show date elsewhere
+        .navigationSubtitle(current?.date?.formatted() ?? "") // TODO: show date elsewhere on iOS
         #endif
         .toolbar() {
             ToolbarItemGroup(placement: .primaryAction) {
                 if let c = current {
-                    let cs = PreferencesManager.getConversationSettings(c)
-                    Chip(cs.model.rawValue.uppercased())
-                    Chip(cs.typeset.description.uppercased())
-                    Button() {
-                        openConvoSettingsPane = true
-                    } label: {
-                        Label("Conversation settings", systemImage: "gearshape")
-                            .labelStyle(.iconOnly)
-                    }
-                    .buttonStyle(.bordered)
-                    .sheet(isPresented: $openConvoSettingsPane) {
-                        c.update.toggle()
-                    } content: {
-                        ConversationSpecificSettings(forConvo: c)
-                    }
+                    ToolbarSettings(c)
                 }
             }
         } .onAppear() {
@@ -158,13 +147,13 @@ struct MainView: View {
                     select(candidates.first!)
                 }
             }
-            updateCodeHighlightTheme(colorScheme)
+            MainView.updateCodeHighlightTheme(colorScheme)
         } .onChange(of: colorScheme) { nv in
-            updateCodeHighlightTheme(nv)
+            MainView.updateCodeHighlightTheme(nv)
         }
     }
     
-    func updateCodeHighlightTheme(_ v: ColorScheme) {
+    static func updateCodeHighlightTheme(_ v: ColorScheme) {
         HighlightrSyntaxHighlighter.shared.setTheme(theme: v == .dark ? AppColors.darkCodeTheme : AppColors.lightCodeTheme)
     }
     
@@ -206,23 +195,5 @@ struct MainView: View {
                 Int16( reverseIndex )
         }
         try? moc.save()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "ChatModel")
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Unable to load persistent stores: \(error)")
-            }
-        }
-        container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        return container
-    }()
-    
-    
-    static var previews: some View {
-        MainView()
     }
 }

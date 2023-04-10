@@ -63,15 +63,6 @@ struct SettingsView: View {
             } else {
                 commonSettings
             }
-            HStack {
-                Spacer()
-                Button {
-                    save()
-                    dismiss()
-                } label: {
-                    Text("Done!")
-                } .buttonStyle(.borderedProminent)
-            }
         }
         .padding(15)
         .onAppear() {

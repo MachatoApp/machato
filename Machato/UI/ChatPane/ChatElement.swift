@@ -8,6 +8,7 @@
 import SwiftUI
 import LaTeXSwiftUI
 import MarkdownUI
+import Cocoa
 
 enum ChatElementAction {
     case delete
@@ -28,6 +29,7 @@ struct ChatElement: View {
     @State private var copyHover: Bool = false;
     @State private var deleteHover: Bool = false;
     @State private var branchHover: Bool = false;
+    @ObservedObject private var pref = PreferencesManager.shared;
 
     @Environment(\.colorScheme) var colorScheme;
     
@@ -48,16 +50,25 @@ struct ChatElement: View {
         case .markdown:
             Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update)
                 .markdownCodeSyntaxHighlighter(HighlightrSyntaxHighlighter.shared).markdownBlockStyle(\.codeBlock) { config in
-                    config.label.padding([.leading, .trailing], 15).padding([.bottom], 25).padding([.top], 15)
+                    config.label.padding([.leading, .trailing], 15).padding([.bottom], 15).padding([.top], 15)
                 }
                 .fixedSize(horizontal: false, vertical: true)
+                .markdownTextStyle {
+                    FontSize(pref.fontSize)
+                } .onChange(of: pref.fontSize) { _ in
+                    update += 1
+                }
         case .plain:
             Text(message.content ?? "").padding(10).textSelection(.enabled).id(update)
+                .font(.system(size: pref.fontSize))
+
         case .mathjax:
-            LaTeX(messageContentLatexPatched).padding(10).textSelection(.enabled).id(update)
+            LaTeX(messageContentLatexPatched, scale: pref.fontSize/13).padding(10).textSelection(.enabled).id(update)
                 .foregroundColor(AppColors.chatForegroundColor)
                 .parsingMode(.onlyEquations)
-                .errorMode(.error)
+                .errorMode(.original)
+                .font(.system(size: pref.fontSize))
+            
         }
     }
     
@@ -68,12 +79,20 @@ struct ChatElement: View {
                 HStack(alignment: .top) {
                     if message.is_response {
                         if message.is_finished {
-                            Label("Received", systemImage: "arrowshape.turn.up.left.fill").labelStyle(.iconOnly) .padding(10).padding([.top], 1)
+                            Image(systemName: "arrowshape.turn.up.left.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 15*pref.fontSize/13, height: 15*pref.fontSize/13)
+                                .padding(10).padding([.top], 1)
                         } else {
                             ProgressView().scaleEffect(0.5).padding([.leading, .trailing], 3).padding([.bottom, .top], 2)
                         }
                     } else {
-                        Label("Sent", systemImage: "arrowshape.right.fill").labelStyle(.iconOnly) .padding(10) .padding([.top], 1)
+                        Image(systemName: "arrowshape.right.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 15*pref.fontSize/13, height: 15*pref.fontSize/13)
+                            .padding(10).padding([.top], 1)
                     }
                     if message.is_error {
                         Markdown(message.content ?? "").padding(10).textSelection(.enabled).id(update).markdownBlockStyle(\.codeBlock) { config in

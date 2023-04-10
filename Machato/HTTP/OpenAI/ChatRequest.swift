@@ -57,7 +57,7 @@ class ChatAPIManager {
         }
         guard await GumroadLicenseManager.shared.checkLicense() else {
             print("License was incorrect !")
-            onResponse(convo, nil, .license_invalid, ChatResponseError.license_invalid_message)
+            onResponse(convo, nil, .license_invalid, PreferencesManager.shared.license_key.count > 0 ? ChatResponseError.license_invalid_message : ChatResponseError.license_key_empty)
             return
         }
         guard PreferencesManager.shared.api_key != "" else {
