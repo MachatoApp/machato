@@ -35,9 +35,7 @@ class MachatoApp: App {
                     self.initialize()
                 }
         }.commands {
-            CommandGroup(after: .appInfo) {
-                CheckForUpdatesView(updater: updaterController.updater)
-            }
+            MachatoCommands()
         }
         Settings {
             AppSettingsView(updater: updaterController.updater)

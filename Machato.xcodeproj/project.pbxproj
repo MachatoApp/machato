@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		183271A929E4656B00B3850E /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 183271A829E4656B00B3850E /* LaTeXSwiftUI */; };
+		183271AB29E4A88D00B3850E /* MachatoCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271AA29E4A88D00B3850E /* MachatoCommands.swift */; };
 		186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186812F029DD944500F98411 /* GumroadLicenseCheck.swift */; };
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		183271A729E4650B00B3850E /* LaTeXSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LaTeXSwiftUI; path = ../../../LaTeXSwiftUI; sourceTree = "<group>"; };
+		183271AA29E4A88D00B3850E /* MachatoCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoCommands.swift; sourceTree = "<group>"; };
 		186812F029DD944500F98411 /* GumroadLicenseCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadLicenseCheck.swift; sourceTree = "<group>"; };
 		1878C82F29D5BEC1000159EA /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		1878C83329D5EFDC000159EA /* HomePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePane.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				18F8504D29D1E796005CCD4A /* Colors.swift */,
 				18F8506329D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift */,
 				1878C83329D5EFDC000159EA /* HomePane.swift */,
+				183271AA29E4A88D00B3850E /* MachatoCommands.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				18B5CD5629D085E0003D8353 /* ChatModel.xcdatamodeld in Sources */,
 				1878C83429D5EFDC000159EA /* HomePane.swift in Sources */,
 				18B8582529D49D1100A688DA /* ConversationSettings.swift in Sources */,
+				183271AB29E4A88D00B3850E /* MachatoCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
