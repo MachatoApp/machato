@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import AlertToast
 
 struct ChatView: View {
     @State private var message : String = "";
@@ -22,18 +23,28 @@ struct ChatView: View {
     }
     @State private var lastSent: Message? = nil;
     @State private var editing: Bool = false;
+    @State private var showToast : Bool = false;
+    @State private var toastText : String  = "";
+    @State private var scrollBroken : Bool = false;
     
     func updateLastSent() {
         lastSent = messages.filter { $0.is_response == false }.last;
     }
+    
+    private var isGenerating : Bool {
+        return messages.last?.is_finished ?? true == false
+    }
+    
+    @State private var scrollPosition: CGFloat = .zero
+    @State private var scrollViewHeight : CGFloat = .zero
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             ZStack (alignment: .bottomLeading){
                 ScrollViewReader { sv in
                     ScrollView(.vertical) {
-                        LazyVStack(alignment: .leading, spacing: 0) {
-                            // Text(convo.date.description)
+                        VStack(alignment: .leading, spacing: 0) {
+                            Spacer().frame(height:1)
                             Divider().padding([.bottom], 0)
                             ForEach(messages) { message in
                                 ChatElement(message, allowEdit: message == lastSent, editing: $editing) { (action, message) in
@@ -49,14 +60,32 @@ struct ChatView: View {
                                     }
                                 }
                             } .onChange(of: lastMessageSize) { _ in
+                                guard scrollBroken == false else { return }
                                 sv.scrollTo(bottomID)
                             } .onChange(of: messages.count) { _ in
                                 updateLastSent()
                             } .onAppear(perform: updateLastSent)
+                                
+                            
                         }
                         Spacer().id(bottomID).frame(maxWidth: .infinity, minHeight: 10, maxHeight: 10)
+                            .background(GeometryReader { geometry in
+                                Color.clear
+                                    .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).maxY)
+                            })
+                            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                                self.scrollPosition = value
+                                self.scrollBroken = abs(scrollPosition - scrollViewHeight) > 40
+                            }
+                        
                     }.onAppear {
-                        sv.scrollTo(bottomID)
+                            sv.scrollTo(bottomID)
+                    }.coordinateSpace(name: "scroll") .background {
+                        GeometryReader { geometry in
+                            Color.clear.preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).height)
+                        }
+                    } .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                        self.scrollViewHeight = value
                     }
                 }
                 HStack{
@@ -78,6 +107,12 @@ struct ChatView: View {
                 }
             }
             Divider()
+            // debug
+//            HStack {
+//                Text(scrollBroken.description)
+//                Text(scrollPosition.description)
+//                Text(scrollViewHeight.description)
+//            }
             if editing {
                 Button {
                     editing = false
@@ -93,9 +128,9 @@ struct ChatView: View {
                 .buttonStyle(.borderless)
                 .background(.thickMaterial)
                 .foregroundColor(AppColors.chatForegroundColor)
+                // .disabled(isGenerating)
             } else {
                 HStack {
-                    
                     CustomTextField(string: $message, prompt: "Type your message", onSend: sendMessage)
                         .textFieldStyle(.plain)
                         .submitLabel(.send)
@@ -110,12 +145,19 @@ struct ChatView: View {
                     } .buttonStyle(.borderless) .disabled(message.count == 0)
                 }
                 .padding([.leading, .trailing], 15)
-                
             }
-        }.background(AppColors.chatBackgroundColor)
+        }.background(AppColors.chatBackgroundColor).toast(isPresenting: $showToast, duration: 2) {
+            AlertToast(displayMode: .banner(.pop), type: .regular, title: toastText)
+        }
     }
     
     func sendMessage() {
+        guard isGenerating == false else {
+            print("Attempting to send while previous message is still being generated")
+            toastText = "Can't send while generating"
+            showToast = true
+            return
+        }
         if message.count == 0 {
             return
         }
@@ -187,11 +229,24 @@ struct CustomTextField: View {
                 }
                 .lineLimit(2)
         }.defaultFocus($editorFocused, true)
+            .onAppear {
+                Task {
+                    try? await Task.sleep(for: .milliseconds(50))
+                editorFocused = true
+                }
+            }
     }
     
     func isShiftKeyPressed() -> Bool {
         let shiftKeyMask = NSEvent.ModifierFlags.shift
         let currentFlags = NSEvent.modifierFlags
         return currentFlags.contains(shiftKeyMask)
+    }
+}
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
     }
 }

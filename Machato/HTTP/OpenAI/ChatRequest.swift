@@ -175,8 +175,10 @@ class ChatAPIManager {
                     }
                     return
                 }
-                guard let c = response?.choices.first?.message.content else {return}
-                onTitle(c.trimmingCharacters(in: ["\""]))
+                guard var c = response?.choices.first?.message.content else {return}
+                c = c.replacing(#/^Title:? ?/#, maxReplacements: 1, with: { _ in return "" })
+                c = c.trimmingCharacters(in: ["\"", "."])
+                onTitle(c)
             }
         }
     }

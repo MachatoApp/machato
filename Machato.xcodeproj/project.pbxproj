@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		183271A929E4656B00B3850E /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 183271A829E4656B00B3850E /* LaTeXSwiftUI */; };
 		183271AB29E4A88D00B3850E /* MachatoCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271AA29E4A88D00B3850E /* MachatoCommands.swift */; };
+		183271AE29E4C96C00B3850E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 183271AD29E4C96C00B3850E /* AlertToast */; };
 		186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186812F029DD944500F98411 /* GumroadLicenseCheck.swift */; };
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
@@ -118,6 +119,7 @@
 				18A4E9AF29E05D72002BA4BD /* MarkdownUI in Frameworks */,
 				183271A929E4656B00B3850E /* LaTeXSwiftUI in Frameworks */,
 				18D71EAD29E1F21A00B33A30 /* Sparkle in Frameworks */,
+				183271AE29E4C96C00B3850E /* AlertToast in Frameworks */,
 				18B8581829D25CE600A688DA /* Highlightr in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +330,7 @@
 				18A4E9AE29E05D72002BA4BD /* MarkdownUI */,
 				18D71EAC29E1F21A00B33A30 /* Sparkle */,
 				183271A829E4656B00B3850E /* LaTeXSwiftUI */,
+				183271AD29E4C96C00B3850E /* AlertToast */,
 			);
 			productName = Machato;
 			productReference = 18B5CD1829CD1B9B003D8353 /* Machato.app */;
@@ -404,6 +407,7 @@
 			packageReferences = (
 				18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */,
 				18D71EAB29E1F21A00B33A30 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				183271AC29E4C96C00B3850E /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 18B5CD1929CD1B9B003D8353 /* Products */;
 			projectDirPath = "";
@@ -816,6 +820,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		183271AC29E4C96C00B3850E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		18B8581629D25CE600A688DA /* XCRemoteSwiftPackageReference "Highlightr" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raspu/Highlightr";
@@ -838,6 +850,11 @@
 		183271A829E4656B00B3850E /* LaTeXSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LaTeXSwiftUI;
+		};
+		183271AD29E4C96C00B3850E /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 183271AC29E4C96C00B3850E /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 		18A4E9AE29E05D72002BA4BD /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

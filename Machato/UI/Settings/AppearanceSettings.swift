@@ -16,9 +16,9 @@ struct AppearanceSettings: View {
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text("Font size            ")
+                Text("Font size              ")
                 Image(systemName: "textformat.size.smaller")
-                Slider(value: $prefs.fontSize, in: 10...31, step: 3)
+                Slider(value: $prefs.fontSize, in: 11...31, step: 2)
                     .onChange(of: prefs.fontSize) { _ in
                         MainView.updateCodeHighlightTheme(colorScheme)
                     }
@@ -35,7 +35,6 @@ struct AppearanceSettings: View {
             Toggle(isOn: $hideConversationSummary) {
                 Text("Hide conversation summary")
             }
-
         }
     }
 }

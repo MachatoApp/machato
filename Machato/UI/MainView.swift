@@ -19,6 +19,7 @@ struct MainView: View {
     @State private var openConvoSettingsPane : Bool = false;
     @Environment(\.openWindow) var openWindow;
     @State private var update : Bool = false;
+    @ObservedObject private var prefs = PreferencesManager.shared;
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -61,7 +62,7 @@ struct MainView: View {
                                     Image(systemName: "trash")
                                 } .buttonStyle(.borderless)
                             }
-                            if PreferencesManager.shared.hide_conversation_summary == false {
+                            if prefs.hide_conversation_summary == false {
                                 Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .opacity(0.6)

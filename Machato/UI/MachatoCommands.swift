@@ -16,6 +16,11 @@ struct MachatoCommands: Commands {
         CommandGroup(after: .help) {
             CheckForUpdatesView(updater: PreferencesManager.shared.updaterController.updater)
         }
+//        CommandMenu("Conversation") {
+//            Button("hey") {
+//
+//            }.keyboardShortcut("n", modifiers: [.command])
+//        }
         SidebarCommands()
     }
 }
