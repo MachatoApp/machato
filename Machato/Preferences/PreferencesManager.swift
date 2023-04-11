@@ -58,17 +58,21 @@ class PreferencesManager: ObservableObject {
         static let hide_conversation_summary = "hide_summary"
         static let defaults_initialized = "defaults_initialized"
         static let font_size = "font_size"
+        static let code_light_theme = "code_light_theme"
+        static let code_dark_theme = "code_dark_theme"
     }
     public static var shared = PreferencesManager()
     public static func restoreDefaults() {
         shared.defaultModel = .gpt_35_turbo
-        shared.defaultTemperature = 1.0
+        shared.defaultTemperature = 0.7
         shared.fontSize = 13
         shared.streamChat = true
         shared.defaultTypeset = .markdown
         shared.defaultPrompt = "You are ChatGPT, a large language model trained by OpenAI."
         shared.hide_conversation_summary = false
         shared.defaults_initialized = true
+        shared.lightTheme = "xcode"
+        shared.darkTheme = "obsidian"
     }
     
     func willChange(_ updateConversationSettings : Bool = false) {
@@ -126,6 +130,15 @@ class PreferencesManager: ObservableObject {
         get { return UserDefaults.standard.string(forKey: StoredPreferenceKey.default_prompt) ?? "You are ChatGPT, a large language model trained by OpenAI." }
         set(v) {UserDefaults.standard.set(v, forKey: StoredPreferenceKey.default_prompt); willChange(true) }
     }
+    var lightTheme : String {
+        get { return UserDefaults.standard.string(forKey: StoredPreferenceKey.code_light_theme) ?? "xcode" }
+        set(v) {UserDefaults.standard.set(v, forKey: StoredPreferenceKey.code_light_theme); willChange()}
+    }
+    var darkTheme : String {
+        get { return UserDefaults.standard.string(forKey: StoredPreferenceKey.code_dark_theme) ?? "obsidian" }
+        set(v) {UserDefaults.standard.set(v, forKey: StoredPreferenceKey.code_dark_theme); willChange() }
+    }
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ChatModel")
         container.loadPersistentStores { description, error in

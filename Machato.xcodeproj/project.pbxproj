@@ -10,6 +10,9 @@
 		183271A929E4656B00B3850E /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 183271A829E4656B00B3850E /* LaTeXSwiftUI */; };
 		183271AB29E4A88D00B3850E /* MachatoCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271AA29E4A88D00B3850E /* MachatoCommands.swift */; };
 		183271AE29E4C96C00B3850E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 183271AD29E4C96C00B3850E /* AlertToast */; };
+		183271B029E569FC00B3850E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271AF29E569FC00B3850E /* SearchView.swift */; };
+		183271B229E56F5200B3850E /* CodeBlockSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271B129E56F5200B3850E /* CodeBlockSettings.swift */; };
+		183271B829E5985C00B3850E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271B729E5985C00B3850E /* View.swift */; };
 		186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186812F029DD944500F98411 /* GumroadLicenseCheck.swift */; };
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
@@ -69,6 +72,9 @@
 /* Begin PBXFileReference section */
 		183271A729E4650B00B3850E /* LaTeXSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LaTeXSwiftUI; path = ../../../LaTeXSwiftUI; sourceTree = "<group>"; };
 		183271AA29E4A88D00B3850E /* MachatoCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachatoCommands.swift; sourceTree = "<group>"; };
+		183271AF29E569FC00B3850E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		183271B129E56F5200B3850E /* CodeBlockSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlockSettings.swift; sourceTree = "<group>"; };
+		183271B729E5985C00B3850E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		186812F029DD944500F98411 /* GumroadLicenseCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadLicenseCheck.swift; sourceTree = "<group>"; };
 		1878C82F29D5BEC1000159EA /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		1878C83329D5EFDC000159EA /* HomePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePane.swift; sourceTree = "<group>"; };
@@ -141,6 +147,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183271B629E5984500B3850E /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				18F8504D29D1E796005CCD4A /* Colors.swift */,
+				183271B729E5985C00B3850E /* View.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		186812EE29DD942D00F98411 /* OpenAI */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +180,7 @@
 				18B5CD4829CF2714003D8353 /* ChatView.swift */,
 				18B5CD4B29CF2899003D8353 /* ChatElement.swift */,
 				18D71EBC29E4304600B33A30 /* ToolbarSettings.swift */,
+				183271AF29E569FC00B3850E /* SearchView.swift */,
 			);
 			path = ChatPane;
 			sourceTree = "<group>";
@@ -178,6 +194,7 @@
 				18D71EB629E2C10F00B33A30 /* AppearanceSettings.swift */,
 				18D71EB829E2C3A000B33A30 /* ConversationSpecificSettingsView.swift */,
 				18D71EBA29E2C4C800B33A30 /* KeysSettingsView.swift */,
+				183271B129E56F5200B3850E /* CodeBlockSettings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -258,11 +275,11 @@
 		18B5CD4A29CF286C003D8353 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				183271B629E5984500B3850E /* Colors */,
 				1878C83229D5EF72000159EA /* Settings */,
 				1878C83129D5EF5D000159EA /* ChatPane */,
 				18B5CD1D29CD1B9B003D8353 /* MainView.swift */,
 				1878C82F29D5BEC1000159EA /* Chip.swift */,
-				18F8504D29D1E796005CCD4A /* Colors.swift */,
 				18F8506329D253CB005CCD4A /* HighlightrSyntaxHighlighter.swift */,
 				1878C83329D5EFDC000159EA /* HomePane.swift */,
 				183271AA29E4A88D00B3850E /* MachatoCommands.swift */,
@@ -460,15 +477,18 @@
 				18F8504E29D1E796005CCD4A /* Colors.swift in Sources */,
 				1878C83829D615EC000159EA /* ChatResponseError.swift in Sources */,
 				18D71EB029E1F6EE00B33A30 /* Sparkle.swift in Sources */,
+				183271B229E56F5200B3850E /* CodeBlockSettings.swift in Sources */,
 				18D71EB929E2C3A000B33A30 /* ConversationSpecificSettingsView.swift in Sources */,
 				18B5CD4929CF2714003D8353 /* ChatView.swift in Sources */,
 				18B5CD1E29CD1B9B003D8353 /* MainView.swift in Sources */,
 				18B8581F29D3983800A688DA /* TypesetFunctionalities.swift in Sources */,
 				186812F129DD944500F98411 /* GumroadLicenseCheck.swift in Sources */,
 				18D71EB529E2B77F00B33A30 /* AppSettingsView.swift in Sources */,
+				183271B029E569FC00B3850E /* SearchView.swift in Sources */,
 				18F8505B29D216B6005CCD4A /* Event.swift in Sources */,
 				18B8581A29D2670800A688DA /* Memoize.swift in Sources */,
 				18D71EBB29E2C4C800B33A30 /* KeysSettingsView.swift in Sources */,
+				183271B829E5985C00B3850E /* View.swift in Sources */,
 				18B5CD1C29CD1B9B003D8353 /* MachatoApp.swift in Sources */,
 				18B5CD4C29CF2899003D8353 /* ChatElement.swift in Sources */,
 				18B5CD5829D0ADE6003D8353 /* Models.swift in Sources */,

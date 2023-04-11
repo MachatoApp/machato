@@ -29,6 +29,10 @@ struct AppSettingsView: View {
                     Label("Appearance", systemImage: "text.and.command.macwindow")
                 }
                 .tag(Tabs.appearance)
+            CodeBlockSettings()
+                .tabItem {
+                    Label("Code Blocks", systemImage: "chevron.left.forwardslash.chevron.right")
+                }
             UpdaterSettingsView(updater: updater)
                 .tabItem {
                     Label("Update", systemImage: "square.and.arrow.down")
@@ -36,7 +40,7 @@ struct AppSettingsView: View {
                 .tag(Tabs.update)
         }
         .padding(20)
-        .frame(width: 375, height: 150)
+        .frame(minWidth: 400)
     }
     init(updater: SPUUpdater) {
         self.updater = updater

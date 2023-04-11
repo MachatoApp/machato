@@ -15,9 +15,7 @@ struct ToolbarSettings: View {
     
     var body: some View {
         Chip(cs.model.rawValue.uppercased())
-        Chip(cs.typeset.description.uppercased()).onChange(of: cs) { nv in
-            print(true)
-        }
+        Chip(cs.typeset.description.uppercased())
         Button() {
             openConvoSettingsPane = true
         } label: {

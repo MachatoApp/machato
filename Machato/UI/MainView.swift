@@ -19,9 +19,22 @@ struct MainView: View {
     @State private var openConvoSettingsPane : Bool = false;
     @Environment(\.openWindow) var openWindow;
     @State private var update : Bool = false;
-    @ObservedObject private var prefs = PreferencesManager.shared;
+    @AppStorage(PreferencesManager.StoredPreferenceKey.hide_conversation_summary) private var hide_conversation_summary : Bool = false;
+    @AppStorage(PreferencesManager.StoredPreferenceKey.current_conversation) private var currentConversationUUIDString : String = "";
+    @State private var searchString : String = "";
+    @State private var selectMessage : Message? = nil;
     
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) var colorScheme;
+    
+    private var showSearchView : Bool {
+        return searchString.count > 0
+    }
+    
+    enum SearchScope: String, CaseIterable {
+        case all, current
+    }
+    @State private var searchScope = SearchScope.current
+
     
     @ViewBuilder
     var sidepane: some View {
@@ -62,7 +75,7 @@ struct MainView: View {
                                     Image(systemName: "trash")
                                 } .buttonStyle(.borderless)
                             }
-                            if prefs.hide_conversation_summary == false {
+                            if hide_conversation_summary == false {
                                 Text(convo.last_message == nil ? "Send your first message!" : convo.last_message!.content?.replacing(#/\n+/#, with: { _ in return " " }) ?? "Empty")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .opacity(0.6)
@@ -71,9 +84,7 @@ struct MainView: View {
                                     .id(convo.update) // hack to force update
                             }
                         }.id(update)
-                    }.padding([.top, .bottom], 5) .onChange(of: current) {nc in
-                        UserDefaults.standard.set(nc?.id?.uuidString ?? "", forKey: "current_uuid")
-                    }
+                    }.padding([.top, .bottom], 5)
 
                 } .onMove(perform: move)
             }
@@ -91,29 +102,38 @@ struct MainView: View {
     
     @ViewBuilder
     var detail: some View {
-        if let cur = current {
-            if cur.id != nil {
-                ChatView(cur, onSend: onSend) { (action, message) in
-                    onMessageAction?(action, message)
-                    if action == .branch {
-                        if let c = conversations.first {
-                            select(c)
-                        }
-                    }
-                } onStopGenerating: { m in
-                    onMessageAction?(.stop, m)
-                }.environment(\.managedObjectContext, moc)
-            } else {
-                Text("Error: conversation has no ID !")
-            }
-        }
-        else {
-            HomePane {
-                if let nc = newConvo {
-                    select(nc())
+        if showSearchView {
+            SearchView(text: $searchString, scope: $searchScope, current: $current) { message in
+                searchString = ""
+                if let c = message.belongs_to_convo {
+                    select(c, selectMessage: message)
                 }
-            } openSettings: {
-                openSettings()
+            }
+        } else {
+            if let cur = current {
+                if cur.id != nil {
+                    ChatView(cur, onSend: onSend, selectMessage: $selectMessage) { (action, message) in
+                        onMessageAction?(action, message)
+                        if action == .branch {
+                            if let c = conversations.first {
+                                select(c)
+                            }
+                        }
+                    } onStopGenerating: { m in
+                        onMessageAction?(.stop, m)
+                    }.environment(\.managedObjectContext, moc)
+                } else {
+                    Text("Error: conversation has no ID !")
+                }
+            }
+            else {
+                HomePane {
+                    if let nc = newConvo {
+                        select(nc())
+                    }
+                } openSettings: {
+                    openSettings()
+                }
             }
         }
     }
@@ -139,32 +159,44 @@ struct MainView: View {
                 }
             }
         } .onAppear() {
-            if let cuids = UserDefaults.standard.string(forKey: "current_uuid") {
-                print("Trying to select conversation \(cuids)")
-                let cuid = UUID(uuidString: cuids)
-                let candidates = conversations.filter { $0.id == cuid }
-                if candidates.count == 1 {
-                    print("Found conversation")
-                    select(candidates.first!)
-                }
-            }
+            selectStoredCurrentConversation()
             MainView.updateCodeHighlightTheme(colorScheme)
         } .onChange(of: colorScheme) { nv in
             MainView.updateCodeHighlightTheme(nv)
+        } .onChange(of: currentConversationUUIDString) { _ in
+            selectStoredCurrentConversation()
+        }.searchable(text: $searchString, placement: .toolbar)
+            .searchScopes($searchScope) {
+                ForEach(SearchScope.allCases, id: \.self) { scope in
+                    if scope != .current || current != nil {
+                        Text(scope.rawValue.capitalized)
+                    }
+                }
+            }
+    }
+    
+    func selectStoredCurrentConversation() {
+        // print("Trying to select conversation \(currentConversationUUIDString)")
+        let cuid = UUID(uuidString: currentConversationUUIDString)
+        let candidates = conversations.filter { $0.id == cuid }
+        if candidates.count == 1 {
+            select(candidates.first!)
         }
     }
     
     static func updateCodeHighlightTheme(_ v: ColorScheme) {
-        HighlightrSyntaxHighlighter.shared.setTheme(theme: v == .dark ? AppColors.darkCodeTheme : AppColors.lightCodeTheme)
+        HighlightrSyntaxHighlighter.shared.setTheme(theme: v == .dark ? PreferencesManager.shared.darkTheme : PreferencesManager.shared.lightTheme)
+        HighlightrSyntaxHighlighter.darkShared.setTheme(theme: PreferencesManager.shared.darkTheme)
     }
     
-    func select(_ c: Conversation) -> Void {
-        // TODO: hack
+    func select(_ c: Conversation, selectMessage m: Message? = nil) -> Void {
         Task {
-            try await Task.sleep(for: .milliseconds(100))
+            try await Task.sleep(for: .milliseconds(10))
             current = c;
+            currentConversationUUIDString = c.id?.uuidString ?? ""
+                //try await Task.sleep(for: .milliseconds(1000))
+            selectMessage = m
         }
-        
     }
     
     init(newConvo: (() -> Conversation)? = nil,
@@ -179,6 +211,7 @@ struct MainView: View {
     
     private func move( from source: IndexSet, to destination: Int)
     {
+        let currentUUID = current?.id?.uuidString ?? currentConversationUUIDString
         // Make an array of items from fetched results
         var revisedItems: [ Conversation ] = conversations.map{ $0 }
 
@@ -196,5 +229,10 @@ struct MainView: View {
                 Int16( reverseIndex )
         }
         try? moc.save()
+        Task {
+            //try await Task.sleep(for: .milliseconds(1000))
+            currentConversationUUIDString = currentUUID
+            selectStoredCurrentConversation()
+        }
     }
 }

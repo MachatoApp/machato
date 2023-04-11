@@ -13,11 +13,12 @@ import MarkdownUI
 class HighlightrSyntaxHighlighter: CodeSyntaxHighlighter {
     private var theme: String
     private var highlightr: Highlightr
-    private var availableLanguages : [String];
-    private var availableThemes : [String];
+    public private(set) var availableLanguages : [String];
+    public private(set) var availableThemes : [String];
     private var memoizedIsLanguageSupported: (String?) -> Bool = { _ in return true };
     
-    public static let shared : HighlightrSyntaxHighlighter = HighlightrSyntaxHighlighter()
+    public static let shared : HighlightrSyntaxHighlighter = .init()
+    public static let darkShared : HighlightrSyntaxHighlighter = .init()
     
     func isLanguageSupported(_ lo: String?) -> Bool {
         guard let l = lo else { return false }

@@ -20,10 +20,16 @@ struct AppColors {
     static public let sentMessageBackground : Color = Color(light: Color(rgba: 0xfafafaff), dark: Color(rgba: 0x181818ff))
     static public let receivedMessageBackground : Color = chatBackgroundColor
     
+    static public let matcha : Color = Color(rgba: 0xb4dc87ff)
+    
     static public let redButtonBackground : Color = Color(light: Color(rgba: 0xfa7171ff), dark: Color(rgba: 0xbd3737ff));
     static public let redButtonForeground: Color = .white;
 
-    static public let darkCodeTheme = "obsidian"
-    static public let lightCodeTheme = "xcode"
+    static public var darkCodeTheme : String {
+        return PreferencesManager.shared.darkTheme
+    }
+    static public var lightCodeTheme : String {
+        return PreferencesManager.shared.lightTheme
+    }
 
 }

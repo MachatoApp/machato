@@ -34,8 +34,16 @@ class MachatoApp: App {
                 .onAppear() {
                     self.initialize()
                 }
+            
         }.commands {
-            MachatoCommands()
+            MachatoCommands { action in
+                switch action {
+                case .new_convo:
+                    let nc = self.newConversation()
+                    guard let id = nc.id else { return }
+                    PreferencesManager.shared.currentConversation = id.uuidString
+                }
+            }
         }
         Settings {
             AppSettingsView(updater: updaterController.updater)
@@ -251,7 +259,7 @@ class MachatoApp: App {
 }
 
 #if os(macOS)
-class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         do {
@@ -260,5 +268,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print(error)
         }
     }
+    func applicationWillUpdate(_ notification: Notification) {
+            if let menu = NSApplication.shared.mainMenu {
+                //menu.items.removeAll{ $0.title == "Edit" }
+                menu.items.removeAll{ $0.title == "File" }
+                menu.items.removeAll{ $0.title == "Window" }
+                menu.items.removeAll{ $0.title == "View" }
+            }
+        }
 }
 #endif
