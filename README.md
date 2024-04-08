@@ -4,7 +4,7 @@ Machato is a native client for various LLMs such as OpenAI's ChatGPT, Anthropic'
 
 ## Buying the app
 
-Despite its open-source release, Machato releases remain paid software which you can buy at [machato.app](https://machato.app). There will be no prebuilt binaries on this repository.
+Machato helps me financially, as such I'm purposefully keeping license checks in place in this app. You can buy a license key (infinite uses, all future updates) at [machato.app](https://machato.app) to show some love! You're free to build the app yourself and adjust those checks, but please refrain from distributing such binaries.
 
 ## Building the app
 
