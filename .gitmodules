@@ -1,6 +1,6 @@
 [submodule "swift-markdown-ui"]
 	path = swift-markdown-ui
-	url = https://github.com/gonzalezreal/swift-markdown-ui.git
+	url = https://github.com/MachatoApp/swift-markdown-ui.git
 [submodule "LaTeXSwiftUI"]
 	path = LaTeXSwiftUI
-	url = https://github.com/colinc86/LaTeXSwiftUI.git
+	url = https://github.com/MachatoApp/LaTeXSwiftUI.git
