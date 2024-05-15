@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocalAIModelSettings: View {
+struct OllamaModelSettings: View {
     
     @Binding var model: Model?
     @State var name : String = ""
@@ -34,7 +34,7 @@ struct LocalAIModelSettings: View {
                         }
                 }
                 HStack {
-                    Text("LocalAI endpoint:")
+                    Text("\(ModelType.local.description) endpoint:")
                     TextField("http://...", text: $endpoint)
                         .onChange(of: endpoint) { newValue in
                             model.localai_endpoint = newValue
@@ -56,13 +56,14 @@ struct LocalAIModelSettings: View {
                     VStack (alignment: .leading) {
                         Button("Refresh available models") {
                             Task { @MainActor in
-                                guard let available = try? await ChatAPIManager.shared.fetchLocalAIModelNames(endpoint: endpoint) else {
+                                guard let available = try? await ChatAPIManager.shared.fetchOllamaModelNames(endpoint: endpoint) else {
                                     error = true
                                     return
                                 }
                                 error = false
                                 model.localai_available_models = available.joined(separator: ";")
-                                print(available)
+                                try? PreferencesManager.shared.persistentContainer.viewContext.save()
+                                update.toggle()
                             }
                         }
                         ForEach(availableModels, id: \.self) { modelName in
@@ -71,7 +72,7 @@ struct LocalAIModelSettings: View {
                             }, set: { v in
                                 self.model?.localai_enabled_models = self.model?.localai_enabled_models ?? ""
                                 if v == true && !(self.model?.localai_enabled_models?.contains(modelName) ?? false) {
-                                    self.model?.localai_enabled_models? += modelName
+                                    self.model?.localai_enabled_models? += ";" + modelName
                                 } else if v == false {
                                     self.model?.localai_enabled_models = self.model?.localai_enabled_models?.replacingOccurrences(of: modelName, with: "")
                                 }
@@ -92,7 +93,7 @@ struct LocalAIModelSettings: View {
     }
     func updateValues() {
         if let model = model {
-            name = model.name ?? "LocalAI"
+            name = model.name ?? ModelType.local.description
             prefix = model.localai_prefix ?? ""
             endpoint = model.localai_endpoint ?? ""
         }

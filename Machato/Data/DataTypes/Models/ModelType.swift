@@ -21,7 +21,7 @@ enum ModelType : String, CaseIterable, Identifiable {
         case .anthropic:
             return "Anthropic"
         case .local:
-            return "LocalAI"
+            return "Ollama"
         }
     }
     

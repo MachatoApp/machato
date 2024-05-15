@@ -37,7 +37,8 @@
 		186812F129DD944500F98411 /* LicenseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186812F029DD944500F98411 /* LicenseCheck.swift */; };
 		18768D902BC00B0300F2A9E1 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18768D8F2BC00B0300F2A9E1 /* MarkdownUI */; };
 		18768D9C2BC00C7000F2A9E1 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18768D9B2BC00C7000F2A9E1 /* MarkdownUI */; };
-		18768D9F2BC00D1000F2A9E1 /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18768D9E2BC00D1000F2A9E1 /* LaTeXSwiftUI */; };
+		18768DA12BD0465400F2A9E1 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18768DA02BD0465400F2A9E1 /* MarkdownUI */; };
+		18768DA32BD0466E00F2A9E1 /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18768DA22BD0466E00F2A9E1 /* LaTeXSwiftUI */; };
 		1878C83029D5BEC1000159EA /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C82F29D5BEC1000159EA /* Chip.swift */; };
 		1878C83429D5EFDC000159EA /* HomePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83329D5EFDC000159EA /* HomePane.swift */; };
 		1878C83829D615EC000159EA /* ChatResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83729D615EC000159EA /* ChatResponseError.swift */; };
@@ -52,7 +53,6 @@
 		189B544D2A2E704A007BAE20 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B544C2A2E704A007BAE20 /* ModelManager.swift */; };
 		189B544F2A310BD4007BAE20 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B544E2A310BD4007BAE20 /* VisualEffectView.swift */; };
 		189B54512A312DE1007BAE20 /* personalities.csv in Resources */ = {isa = PBXBuildFile; fileRef = 189B54502A312DE1007BAE20 /* personalities.csv */; };
-		18A4E9AF29E05D72002BA4BD /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18A4E9AE29E05D72002BA4BD /* MarkdownUI */; };
 		18AD11D02A3E313500483BA8 /* convert.prod.js in Resources */ = {isa = PBXBuildFile; fileRef = 18AD11CF2A3E313400483BA8 /* convert.prod.js */; };
 		18AD11D22A3E4F4700483BA8 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD11D12A3E4F4700483BA8 /* PathView.swift */; };
 		18AD11D42A3F5A2900483BA8 /* Wikipedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD11D32A3F5A2900483BA8 /* Wikipedia.swift */; };
@@ -76,7 +76,7 @@
 		18B8582329D3A34C00A688DA /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8582229D3A34C00A688DA /* PreferencesManager.swift */; };
 		18B8582529D49D1100A688DA /* ConversationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8582429D49D1100A688DA /* ConversationSettings.swift */; };
 		18BFA7A32AC84B5C00CBD8EC /* MenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFA7A22AC84B5C00CBD8EC /* MenuContent.swift */; };
-		18BFA7A52ACA3A2800CBD8EC /* LocalAIModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFA7A42ACA3A2800CBD8EC /* LocalAIModelSettings.swift */; };
+		18BFA7A52ACA3A2800CBD8EC /* OllamaModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFA7A42ACA3A2800CBD8EC /* OllamaModelSettings.swift */; };
 		18BFA7BC2ACC41C000CBD8EC /* ConversationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8581B29D3593F00A688DA /* ConversationSettingsView.swift */; };
 		18BFA7BD2ACC41C000CBD8EC /* AnthropicModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FADA382A55F87000387AB3 /* AnthropicModelSettings.swift */; };
 		18BFA7BE2ACC41C000CBD8EC /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD11D12A3E4F4700483BA8 /* PathView.swift */; };
@@ -103,7 +103,7 @@
 		18BFA7D32ACC41C000CBD8EC /* ChatResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878C83729D615EC000159EA /* ChatResponseError.swift */; };
 		18BFA7D42ACC41C000CBD8EC /* UnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D572212A3E20A300912444 /* UnitConverter.swift */; };
 		18BFA7D52ACC41C000CBD8EC /* FunctionContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D572142A3A15A100912444 /* FunctionContent.swift */; };
-		18BFA7D62ACC41C000CBD8EC /* LocalAIModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFA7A42ACA3A2800CBD8EC /* LocalAIModelSettings.swift */; };
+		18BFA7D62ACC41C000CBD8EC /* OllamaModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFA7A42ACA3A2800CBD8EC /* OllamaModelSettings.swift */; };
 		18BFA7D72ACC41C000CBD8EC /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71EAF29E1F6EE00B33A30 /* Sparkle.swift */; };
 		18BFA7D82ACC41C000CBD8EC /* WindowAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D210CC29F74CB600D35D07 /* WindowAccessor.swift */; };
 		18BFA7D92ACC41C000CBD8EC /* CodeBlockSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183271B129E56F5200B3850E /* CodeBlockSettings.swift */; };
@@ -287,7 +287,7 @@
 		18B8582229D3A34C00A688DA /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
 		18B8582429D49D1100A688DA /* ConversationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSettings.swift; sourceTree = "<group>"; };
 		18BFA7A22AC84B5C00CBD8EC /* MenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContent.swift; sourceTree = "<group>"; };
-		18BFA7A42ACA3A2800CBD8EC /* LocalAIModelSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAIModelSettings.swift; sourceTree = "<group>"; };
+		18BFA7A42ACA3A2800CBD8EC /* OllamaModelSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OllamaModelSettings.swift; sourceTree = "<group>"; };
 		18BFA82B2ACC41C000CBD8EC /* Machato MAS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Machato MAS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BFA82C2ACC41C000CBD8EC /* Machato MAS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Machato MAS-Info.plist"; path = "/Users/fliife/Documents/code/machato/Machato/Machato MAS-Info.plist"; sourceTree = "<absolute>"; };
 		18BFA8302ACC8D9200CBD8EC /* Machato.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Machato.storekit; sourceTree = "<group>"; };
@@ -331,8 +331,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A4E9AF29E05D72002BA4BD /* MarkdownUI in Frameworks */,
-				18768D9F2BC00D1000F2A9E1 /* LaTeXSwiftUI in Frameworks */,
+				18768DA12BD0465400F2A9E1 /* MarkdownUI in Frameworks */,
+				18768DA32BD0466E00F2A9E1 /* LaTeXSwiftUI in Frameworks */,
 				18D572202A3E044900912444 /* CoreLocation.framework in Frameworks */,
 				18D71EAD29E1F21A00B33A30 /* Sparkle in Frameworks */,
 				18768D902BC00B0300F2A9E1 /* MarkdownUI in Frameworks */,
@@ -718,7 +718,7 @@
 				18FADA382A55F87000387AB3 /* AnthropicModelSettings.swift */,
 				18FADA3A2A55F88A00387AB3 /* OpenAIModelSettings.swift */,
 				18FADA3C2A55F8BE00387AB3 /* AzureModelSettings.swift */,
-				18BFA7A42ACA3A2800CBD8EC /* LocalAIModelSettings.swift */,
+				18BFA7A42ACA3A2800CBD8EC /* OllamaModelSettings.swift */,
 			);
 			path = ModelSettings;
 			sourceTree = "<group>";
@@ -741,7 +741,6 @@
 			name = Machato;
 			packageProductDependencies = (
 				18B8581729D25CE600A688DA /* Highlightr */,
-				18A4E9AE29E05D72002BA4BD /* MarkdownUI */,
 				18D71EAC29E1F21A00B33A30 /* Sparkle */,
 				183271AD29E4C96C00B3850E /* AlertToast */,
 				183271DE29E8BB0C00B3850E /* GPTEncoder */,
@@ -752,7 +751,8 @@
 				18FADA282A40B97700387AB3 /* SwiftSoup */,
 				18768D8F2BC00B0300F2A9E1 /* MarkdownUI */,
 				18768D9B2BC00C7000F2A9E1 /* MarkdownUI */,
-				18768D9E2BC00D1000F2A9E1 /* LaTeXSwiftUI */,
+				18768DA02BD0465400F2A9E1 /* MarkdownUI */,
+				18768DA22BD0466E00F2A9E1 /* LaTeXSwiftUI */,
 			);
 			productName = Machato;
 			productReference = 18B5CD1829CD1B9B003D8353 /* Machato.app */;
@@ -897,7 +897,7 @@
 				1878C83829D615EC000159EA /* ChatResponseError.swift in Sources */,
 				18D572222A3E20A300912444 /* UnitConverter.swift in Sources */,
 				18D572152A3A15A100912444 /* FunctionContent.swift in Sources */,
-				18BFA7A52ACA3A2800CBD8EC /* LocalAIModelSettings.swift in Sources */,
+				18BFA7A52ACA3A2800CBD8EC /* OllamaModelSettings.swift in Sources */,
 				18D71EB029E1F6EE00B33A30 /* Sparkle.swift in Sources */,
 				18D210CD29F74CB600D35D07 /* WindowAccessor.swift in Sources */,
 				183271B229E56F5200B3850E /* CodeBlockSettings.swift in Sources */,
@@ -991,7 +991,7 @@
 				18BFA7D32ACC41C000CBD8EC /* ChatResponseError.swift in Sources */,
 				18BFA7D42ACC41C000CBD8EC /* UnitConverter.swift in Sources */,
 				18BFA7D52ACC41C000CBD8EC /* FunctionContent.swift in Sources */,
-				18BFA7D62ACC41C000CBD8EC /* LocalAIModelSettings.swift in Sources */,
+				18BFA7D62ACC41C000CBD8EC /* OllamaModelSettings.swift in Sources */,
 				18BFA7D72ACC41C000CBD8EC /* Sparkle.swift in Sources */,
 				18BFA7D82ACC41C000CBD8EC /* WindowAccessor.swift in Sources */,
 				18BFA7D92ACC41C000CBD8EC /* CodeBlockSettings.swift in Sources */,
@@ -1185,7 +1185,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 31;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
 				DEVELOPMENT_TEAM = BHFDJ8TRX6;
@@ -1203,7 +1203,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1225,7 +1225,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 31;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Machato/Preview Content\"";
 				DEVELOPMENT_TEAM = BHFDJ8TRX6;
@@ -1243,7 +1243,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = machato.Machato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1538,7 +1538,11 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = MarkdownUI;
 		};
-		18768D9E2BC00D1000F2A9E1 /* LaTeXSwiftUI */ = {
+		18768DA02BD0465400F2A9E1 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MarkdownUI;
+		};
+		18768DA22BD0466E00F2A9E1 /* LaTeXSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LaTeXSwiftUI;
 		};
@@ -1546,10 +1550,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 188CAF882A163DCB005B672A /* XCRemoteSwiftPackageReference "Tiktoken" */;
 			productName = Tiktoken;
-		};
-		18A4E9AE29E05D72002BA4BD /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MarkdownUI;
 		};
 		18B8581729D25CE600A688DA /* Highlightr */ = {
 			isa = XCSwiftPackageProductDependency;

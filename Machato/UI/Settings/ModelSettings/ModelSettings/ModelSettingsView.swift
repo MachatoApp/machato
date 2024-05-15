@@ -21,7 +21,7 @@ struct ModelSettings : View {
             case .anthropic:
                 AnthropicModelSettings(model: $model)
             case .local:
-                LocalAIModelSettings(model: $model)
+                OllamaModelSettings(model: $model)
             }
         } else {
             Spacer()

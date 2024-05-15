@@ -53,9 +53,10 @@ struct StreamedChatDelta : Codable {
 }
 
 struct AnthropicChatDelta : Codable {
-    var completion : String
-    var stop_reason : String?
-    var model : String    
+    var delta : Delta
+    struct Delta : Codable {
+        var text: String
+    }
 }
 
 public struct APIError: Error, Codable {
@@ -69,9 +70,9 @@ public struct APIError: Error, Codable {
 }
 
 struct ModelList : Codable {
-    var data : [ModelId]
+    var models : [ModelId]
     struct ModelId : Codable {
-        var id: String
-        var object: String
+        var name: String
+        var model: String
     }
 }

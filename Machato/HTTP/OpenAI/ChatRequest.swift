@@ -24,13 +24,13 @@ actor ChatAPIManager {
         eventSources[c] = e
     }
     
-    func fetchLocalAIModelNames(endpoint: String) async throws -> [String] {
-        guard let url = URL(string: "\(endpoint)/models".replacingOccurrences(of: "//", with: "/")) else { throw URLError(.badURL) }
+    func fetchOllamaModelNames(endpoint: String) async throws -> [String] {
+        guard let url = URL(string: "\(endpoint.replacingOccurrences(of: "localhost", with: "127.0.0.1"))/api/tags".replacingOccurrences(of: "//", with: "/")) else { throw URLError(.badURL) }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let (data, _) = try await URLSession.shared.data(for: request)
         let jsonData : ModelList = try JSONDecoder().decode(ModelList.self, from: data)
-        return jsonData.data.map { $0.id }
+        return jsonData.models.map { $0.model }
     }
     
     func checkOpenAIAPIKey(_ key : String) async -> Bool {
@@ -80,7 +80,7 @@ actor ChatAPIManager {
             url = URL(string: "\(modelEntity.azure_company_endpoint ?? "")\((modelEntity.azure_company_endpoint?.hasSuffix("/") ?? false) ? "" : "/")openai/deployments/\(modelEntity.azure_deployment_name ?? "")/chat/completions?api-version=2023-05-15")!
             print(url)
         case .anthropic(_,_,_,_):
-            url = URL(string: "https://api.anthropic.com/v1/complete")!
+            url = URL(string: "https://api.anthropic.com/v1/messages")!
         case .local(_,_,let endpoint):
             url = URL(string: "\(endpoint.replacingOccurrences(of: "localhost", with: "127.0.0.1"))/v1/chat/completions".replacingOccurrences(of: "//", with: "/"))!
         }
@@ -117,6 +117,9 @@ actor ChatAPIManager {
         ] as [String : Any]
         
         var msgs = [["role": "system", "content": settings.prompt]]
+        if case .anthropic(_,_,_,_) = model {
+            msgs = []
+        }
         messages.sortedArray(using: [NSSortDescriptor(keyPath: \Message.date, ascending: true)]).forEach() {m in
             guard let mcast = m as? Message else {
                 print("Message from convo messages was not castable do MessageEntity")
@@ -136,25 +139,12 @@ actor ChatAPIManager {
             return ["role" : "user", "content": am]
         })
         
-        if case .openai(_,_,_,_) = model {
-            body["messages"] = msgs
-        }
-        if case .azure(_,_,_,_) = model {
-            body["messages"] = msgs
-        }
-        if case .local(_,_,_) = model {
-            body["messages"] = msgs
-        }
+        body["messages"] = msgs
         if case .anthropic(_,_,let assoc,_) = model {
-            body["prompt"] = msgs.reduce("", { acc, v in
-                acc + "\n\n\(v["name"] == "assistant" ? "Assistant" : "Human"):\(v["content"] ?? "")"
-            }) + "\n\nAssistant:"
-            body["max_tokens_to_sample"] = assoc.contextLength
+            body["system"] = settings.prompt
             body["model"] = assoc.rawValue
-            body["stop_sequences"] = ["\n\nHuman:", "<<<<<"]
             body.removeValue(forKey: "presence_penalty")
             body.removeValue(forKey: "frequency_penalty")
-            print(body["prompt"] ?? "no prompt")
         }
         
         if case .openai(_, _, let assoc, _) = model {
@@ -182,12 +172,16 @@ actor ChatAPIManager {
         if !settings.manageMax {
             body["max_tokens"] = settings.maxTokens
         }
-        
+        if case .anthropic(_,_,let assoc,_) = model {
+            body["max_tokens"] = min(body["max_tokens"] as? Int32 ?? assoc.contextLength, assoc.maxTokens);
+        }
+
 //        print(body)
 
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
             request.httpBody = jsonData
+            // print("sent json data: \(String(decoding: jsonData, as: UTF8.self))")
         } catch {
             print("Error serializing JSON: \(error.localizedDescription)")
         }
@@ -314,11 +308,11 @@ actor ChatAPIManager {
         var functionCall : (name: String, arguments: String) = (name: "", arguments: "")
         
         // Anthropic event
-        eventSource.addEventListener("completion") { id, event, data in
+        eventSource.addEventListener("content_block_delta") { id, event, data in
             guard let d = data else { return }
             do {
                 let anthropicChatDelta : AnthropicChatDelta = try JSONDecoder().decode(AnthropicChatDelta.self, from: d.data(using: .utf8)!)
-                let d = anthropicChatDelta.completion
+                let d = anthropicChatDelta.delta.text
                 TokenUsageManager.shared.registerTokens(count: TokenCounter.shared.countTokens(d),
                                                         model: settings.model,
                                                         sent: false)
