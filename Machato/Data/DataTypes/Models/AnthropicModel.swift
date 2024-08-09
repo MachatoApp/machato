@@ -25,7 +25,7 @@ enum AnthropicModel: String, CaseIterable, Identifiable, ModelEnum {
     }
     
     var id : String { return self.rawValue }
-    static let default_case : Self = .claude_haiku
+    static let default_case : Self = .claude_3_haiku
     static func fromString(_ sm: String?) -> Self {
         guard let s = sm else { return default_case }
         for c in Self.allCases {
