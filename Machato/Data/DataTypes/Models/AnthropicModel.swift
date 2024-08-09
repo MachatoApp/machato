@@ -8,17 +8,13 @@
 import Foundation
 
 enum AnthropicModel: String, CaseIterable, Identifiable, ModelEnum {
-    case claude_instant_v1      = "claude-instant-1.2"
-    case claude_v2              = "claude-2"
-    case claude_v2_1            = "claude-2.1"
-    case claude_haiku           = "claude-3-haiku-20240307"
-    case claude_opus            = "claude-3-opus-20240229"
-    case claude_sonnet          = "claude-3-sonnet-20240229"
+    case claude_3_haiku           = "claude-3-haiku-20240307"
+    case claude_3_opus            = "claude-3-opus-20240229"
+    case claude_3_sonnet          = "claude-3-sonnet-20240229"
+    case claude_35_sonnet         = "claude-3-5-sonnet-20240620"
 
     var contextLength : Int32 {
         switch self {
-        case .claude_instant_v1, .claude_v2:
-            return 100_000
         default:
             return 200_000
         }

@@ -13,12 +13,10 @@ protocol ModelEnum {
 
 enum OpenAIChatModel: String, CaseIterable, Identifiable, ModelEnum {
     case gpt_4               = "gpt-4"
-    case gpt_4_32k           = "gpt-4-32k"
     case gpt_35_turbo        = "gpt-3.5-turbo"
     case gpt_4_turbo         = "gpt-4-turbo"
-    case gpt_4_turbo_preview = "gpt-4-turbo-preview"
-    case gpt_4_turbo_vision  = "gpt-4-vision-preview"
     case gpt_4o              = "gpt-4o"
+    case gpt_4o_mini         = "gpt-4o-mini"
 
     var contextLength : Int32 {
         switch self {
@@ -26,9 +24,7 @@ enum OpenAIChatModel: String, CaseIterable, Identifiable, ModelEnum {
             return 16_385
         case .gpt_4:
             return 8_192
-        case .gpt_4_32k:
-            return 32_768
-        case .gpt_4_turbo, .gpt_4_turbo_vision, .gpt_4_turbo_preview, .gpt_4o:
+        case .gpt_4_turbo, .gpt_4o, .gpt_4o_mini:
             return 128_000
         }
     }
